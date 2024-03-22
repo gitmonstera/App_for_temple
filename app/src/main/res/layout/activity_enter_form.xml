@@ -27,7 +27,7 @@
         android:id="@+id/button_Enter_Enter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:backgroundTint="#1E90FF"
         android:layout_marginStart="144dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="144dp"
@@ -60,6 +60,7 @@
         android:layout_marginStart="108dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="108dp"
+        android:backgroundTint="#1E90FF"
         android:text="Зарегистрироваться"
         android:textSize="15dp"
         android:textStyle="bold"
