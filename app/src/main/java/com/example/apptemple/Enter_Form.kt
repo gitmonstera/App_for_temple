@@ -9,6 +9,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.apptemple.databinding.ActivityEnterFormBinding
 
 class Enter_Form : AppCompatActivity() {
+    // этот код обеспечивает ленивую инициализацию binding, что позволяет избежать избыточных затрат на ресурсы, если binding не используется во время работы приложения.
+    // а также благодаря этой переменной можно забыть об использовании findViewById, который сильно загромождает код
     private val binding by lazy { ActivityEnterFormBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -20,6 +20,7 @@ class Register_Form : AppCompatActivity() {
         }
         changeWindow()
     }
+    // при возвращении назад лучше использовать функцию finish(). Оно закрывает текущее активити, что предотвращяет создание нового активити, которое занимало бы память на устройстве.
     private fun changeWindow() {
         binding.buttonRegisterEnter.setOnClickListener {
             finish()
