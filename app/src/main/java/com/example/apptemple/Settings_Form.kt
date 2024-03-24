@@ -1,16 +1,14 @@
 package com.example.apptemple
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.apptemple.databinding.ActivityRegisterFormBinding
+import com.example.apptemple.databinding.ActivitySettingsFormBinding
 
-class Register_Form : AppCompatActivity() {
-    private val binding by lazy { ActivityRegisterFormBinding.inflate(layoutInflater) }
+class Settings_Form : AppCompatActivity() {
+    private val binding by lazy { ActivitySettingsFormBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,10 +18,11 @@ class Register_Form : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        changeWindow()
+        getBack()
     }
-    private fun changeWindow() {
-        binding.buttonRegisterEnter.setOnClickListener {
+
+    private fun getBack(){
+        binding.buttonBack.setOnClickListener{
             finish()
         }
     }

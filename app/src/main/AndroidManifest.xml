@@ -18,6 +18,9 @@
         android:theme="@style/Theme.AppTemple"
         tools:targetApi="31">
         <activity
+            android:name=".Settings_Form"
+            android:exported="false" />
+        <activity
             android:name=".News_Feed"
             android:exported="false" />
         <activity
