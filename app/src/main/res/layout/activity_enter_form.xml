@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Enter_Form">
 
     <TextView
@@ -12,81 +13,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="177dp"
-        android:layout_marginTop="123dp"
+        android:layout_marginTop="170dp"
         android:layout_marginEnd="177dp"
-        android:layout_marginBottom="5dp"
+        android:textColor="@color/black"
         android:text="Вход"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText_Enter_Login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button_Enter_Enter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#1E90FF"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="144dp"
-        android:text="Войти"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_Enter_Password" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="117dp"
-        android:layout_marginTop="156dp"
-        android:layout_marginEnd="118dp"
-        android:text="Ещё нет аккаунта?"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_Enter_Enter" />
-
-    <Button
-        android:id="@+id/button_Enter_Register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="108dp"
-        android:backgroundTint="#1E90FF"
-        android:text="Зарегистрироваться"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.113" />
-
-    <EditText
-        android:id="@+id/editText_Enter_Password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="102dp"
-        android:layout_marginTop="47dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Пароль"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/button_Enter_Enter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_Enter_Login" />
 
     <EditText
         android:id="@+id/editText_Enter_Login"
@@ -95,14 +29,76 @@
         android:layout_marginStart="103dp"
         android:layout_marginTop="45dp"
         android:layout_marginEnd="99dp"
-        android:layout_marginBottom="10dp"
+        android:textColor="@color/black"
         android:ems="10"
         android:hint="Логин"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editText_Enter_Password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColorHint="#808080"
         app:layout_constraintTop_toBottomOf="@+id/textView_Enter" />
+
+    <EditText
+        android:id="@+id/editText_Enter_Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="100dp"
+        android:textColor="@color/black"
+        android:ems="10"
+        android:hint="Пароль"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColorHint="#808080"
+        app:layout_constraintTop_toBottomOf="@+id/editText_Enter_Login" />
+
+    <Button
+        android:id="@+id/button_Enter_Enter"
+        android:layout_width="138dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="144dp"
+        android:backgroundTint="#1E90FF"
+        android:text="Войти"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_Enter_Password" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="117dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="118dp"
+        android:textColor="@color/black"
+        android:text="Ещё нет аккаунта?"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_Enter_Enter" />
+
+    <Button
+        android:id="@+id/button_Enter_Register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="108dp"
+        android:backgroundTint="#1E90FF"
+        android:text="Зарегистрироваться"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
