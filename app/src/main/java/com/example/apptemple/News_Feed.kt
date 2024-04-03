@@ -1,16 +1,13 @@
 package com.example.apptemple
 
-import android.content.Intent
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.Switch
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import com.example.apptemple.databinding.ActivityNewsFeedBinding
 
 class News_Feed : AppCompatActivity() {
@@ -21,27 +18,50 @@ class News_Feed : AppCompatActivity() {
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        replaceFragment(home())
+        bottomOpen()
+    }
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Выход")
+            .setMessage("Вы уверены, что хотите выйти из приложения?")
+            .setPositiveButton("Да") { dialog, which ->
+                finishAffinity() // Завершение всех активностей в приложении
+            }
+            .setNegativeButton("Нет") { dialog, which ->
+                dialog.dismiss() // Отмена выхода
+            }
+            .show()
+    }
 
-        binding.buttonMenuSwitch.setOnClickListener{
-            binding.main.openDrawer(GravityCompat.END)
+
+    private fun bottomOpen(){
+        binding.bottomMenu.setOnItemSelectedListener {
+            when (it.itemId){
+
+                R.id.homeItem -> {
+                    replaceFragment(home())
+                }
+
+                R.id.profileItem -> {
+                    replaceFragment(profile())
+                }
+
+                R.id.lessonsItem -> {
+                    replaceFragment(lessons())
+                }
+            }
+            true
         }
-        goSettings()
-        exitAccount()
     }
-    private fun goSettings(){
-        binding.buttonSettings.setOnClickListener {
-            val intent = Intent(this, Settings_Form::class.java)
-            binding.main.closeDrawer(GravityCompat.END)
-            startActivity(intent)
-        }
-    }
-    private fun exitAccount(){
-        binding.buttonExit.setOnClickListener{
-            binding.main.closeDrawer(GravityCompat.END)
-            finish()
-        }
+
+    private fun replaceFragment(fragment: Fragment){
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frameLayout, fragment)
+        fragmentTransaction.commit()
     }
 }
