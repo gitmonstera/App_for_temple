@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment
 fun AppCompatActivity.replace(
     fragment : Fragment, id : Int = R.id.frameLayout
 ) = supportFragmentManager.beginTransaction().replace(id, fragment).commit()
-//выводит сообщение на экран
+//выводит сообщение на экран. Пример использования: displayMessage("Все поля должны быть заполнены!")
 fun Context.displayMessage(message : String) = Toast.makeText(
     this, message, Toast.LENGTH_LONG
 ).show()
-//переход на экран
+//переход на экран. Пример использования: navigate(Enter_Form::class.java), на фрагменте ()
 fun<T> AppCompatActivity.navigate(javaClass : Class<T>) {
     val intent = Intent(this, javaClass)
     startActivity(intent)
