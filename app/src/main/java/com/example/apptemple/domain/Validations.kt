@@ -8,6 +8,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 
+//пример использования: checkUserData("qwerty", "123456", this)
 fun checkUserData(
     login : String, password : String, context : Context
 ): Boolean = when {
@@ -25,7 +26,7 @@ fun checkUserData(
     }
     else -> true
 }
-
+//пример использования: checkEmail("5R5oA@example.com", this)
 fun checkEmail(
     email : String, context : Context
 ) : Boolean = when {
@@ -35,22 +36,22 @@ fun checkEmail(
     }
     else -> true
 }
-//проверка даты на валидность будет работать, начиная с андроид 8
-@RequiresApi(VERSION_CODES.O)
-fun checkBirthdate(birthdate : String, context : Context): String? {
-    return try {
-        if (Regex("""^\d{2}\.\d{2}\.\d{4}$""").matches(birthdate)) {
-            val date = LocalDate.parse(birthdate, DateTimeFormatter.ofPattern("dd.MM.yyyy"))
-            when {
-                date < LocalDate.now() -> birthdate
-                else -> {
-                    context.displayMessage("Некорректная дата рождения или неправильный формат даты (дд.мм.гггг)")
-                    null
-                }
+//проверка даты на валидность будет работать, начиная с андроид 8 и больше. Ниже 8 версии не поддерживают этот функционал
+@RequiresApi(VERSION_CODES.O)//Пример использования: checkBirthdate("01.01.2000", this(Если используется в активити))
+fun checkBirthdate(
+    birthdate : String, context : Context
+): String? = try {
+    if (Regex("""^\d{2}\.\d{2}\.\d{4}$""").matches(birthdate)) {
+        val date = LocalDate.parse(birthdate, DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+        when {
+            date < LocalDate.now() -> birthdate
+            else -> {
+                context.displayMessage("Некорректная дата рождения")
+                null
             }
-        } else null
-    } catch (e: DateTimeParseException) {
-        context.displayMessage("Некорректная дата рождения или неправильный формат даты (дд.мм.гггг)")
-        null
-    }
+        }
+    } else null
+} catch (e: DateTimeParseException) {
+    context.displayMessage("Неправильный формат даты (дд.мм.гггг)")
+    null
 }
