@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
@@ -18,23 +19,17 @@
         android:theme="@style/Theme.AppTemple"
         tools:targetApi="31">
         <activity
-            android:name=".profile_form"
-            android:exported="false" />
-        <activity
-            android:name=".ScheduleForm"
-            android:exported="false" />
-        <activity
-            android:name=".Settings_Form"
-            android:exported="false" />
-        <activity
-            android:name=".News_Feed"
+            android:name=".SettingsActivity"
             android:exported="false" />
         <activity
             android:name=".Register_Form"
             android:exported="false" />
         <activity
             android:name=".Enter_Form"
-            android:exported="true">
+            android:exported="false" />
+        <activity
+            android:name=".News_Feed"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
