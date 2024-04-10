@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".News_Feed">
 
     <FrameLayout
@@ -14,6 +15,7 @@
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toTopOf="@+id/bottomMenu">
     </FrameLayout>
 
@@ -22,13 +24,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#e6e6e6"
-        app:itemIconTint="#3b3b3b"
-        app:itemRippleColor="@color/white"
-        app:itemTextColor="#3b3b3b"
-        app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_menu" />
+        app:menu="@menu/bottom_menu"
+        app:labelVisibilityMode="selected"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,8 @@ import com.example.apptemple.databinding.ActivityNewsFeedBinding
 
 class News_Feed : AppCompatActivity() {
     private val binding by lazy { ActivityNewsFeedBinding.inflate(layoutInflater) }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,6 +23,7 @@ class News_Feed : AppCompatActivity() {
             insets
         }
         replaceFragment(home())
+        announcesPanel()
         bottomOpen()
     }
     @SuppressLint("MissingSuperCall")
@@ -51,7 +54,8 @@ class News_Feed : AppCompatActivity() {
                 }
 
                 R.id.lessonsItem -> {
-                    replaceFragment(lessons())
+                    replace(lessons.newInstance("",""))
+//                    replaceFragment(lessons())
                 }
             }
             true
@@ -63,5 +67,9 @@ class News_Feed : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayout, fragment)
         fragmentTransaction.commit()
+    }
+
+    private fun announcesPanel(){
+
     }
 }
