@@ -1,57 +1,25 @@
 package com.example.apptemple.domain
 
-import android.content.Context
-import android.os.Build.VERSION_CODES
-import androidx.annotation.RequiresApi
-import com.example.apptemple.displayMessage
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeParseException
+import com.example.apptemple.utils.Messages.INCORRECT_BIRTHDATE
+import com.example.apptemple.utils.Messages.INCORRECT_DATA
+import com.example.apptemple.utils.Messages.INCORRECT_EMAIL
+import com.example.apptemple.utils.Messages.INCORRECT_LOGIN
+import com.example.apptemple.utils.Messages.INCORRECT_PASSWORD
+import com.example.apptemple.utils.Messages.SUCCESS
 
-//пример использования: checkUserData("qwerty", "123456", this)
-fun checkUserData(
-    login : String, password : String, context : Context
-): Boolean = when {
-    login.isBlank() && (password.isBlank() || password.length < 6) -> {
-        context.displayMessage("Неправильный логин и пароль")
-        false
-    }
-    login.isBlank() -> {
-        context.displayMessage("Некорректный логин")
-        false
-    }
-    password.isBlank() || password.length < 6 -> {
-        context.displayMessage("Пароль слишком короткий. Минимальная длина - 6 символов")
-        false
-    }
-    else -> true
+fun checkUserData(//null - означает, что этот параметр не был передан в функцию(нужно для авторизации). Для регистрации мы все передаем
+    username : String, password : String, email : String? = null, birthdate : String? = null
+) : String = when {
+    username.isBlank() && checkPassword(password) -> INCORRECT_DATA
+    username.isBlank() -> INCORRECT_LOGIN
+    checkPassword(password) -> INCORRECT_PASSWORD
+    //если мы не передали в функцию email, то пропускаем этот шаг. с условием про дату то же самое
+    email != null && checkEmail(email) -> INCORRECT_EMAIL
+    birthdate != null && !checkDate(birthdate) -> INCORRECT_BIRTHDATE
+    else -> SUCCESS
 }
-//пример использования: checkEmail("5R5oA@example.com", this)
-fun checkEmail(
-    email : String, context : Context
-) : Boolean = when {
-    email.isBlank() || !email.contains("@") -> {
-        context.displayMessage("Некорректная почта. Отсутствует @")
-        false
-    }
-    else -> true
-}
-//проверка даты на валидность будет работать, начиная с андроид 8 и больше. Ниже 8 версии не поддерживают этот функционал
-@RequiresApi(VERSION_CODES.O)//Пример использования: checkBirthdate("01.01.2000", this(Если используется в активити))
-fun checkBirthdate(
-    birthdate : String, context : Context
-): String? = try {
-    if (Regex("""^\d{2}\.\d{2}\.\d{4}$""").matches(birthdate)) {
-        val date = LocalDate.parse(birthdate, DateTimeFormatter.ofPattern("dd.MM.yyyy"))
-        when {
-            date < LocalDate.now() -> birthdate
-            else -> {
-                context.displayMessage("Некорректная дата рождения")
-                null
-            }
-        }
-    } else null
-} catch (e: DateTimeParseException) {
-    context.displayMessage("Неправильный формат даты (дд.мм.гггг)")
-    null
-}
+fun checkPassword(password : String) = password.isBlank() || password.length < 6
+// string.isBlank - проверка является ли строка пустой или состоит только из пробелов
+fun checkEmail(email: String) = email.isBlank() && !email.contains("@")
+//проверяет строку на соответствие регулярному выражению (дд.мм.гггг)
+fun checkDate(birthdate: String) = Regex("""^\d{2}\.\d{2}\.\d{4}$""").matches(birthdate)
