@@ -19,14 +19,14 @@ class profile : Fragment() {
         return binding.root
     }
     private fun displayUserData() {
-        val userName = getActivityContext().intent.getStringExtra("userName")
+        val userName = requireActivity().intent.getStringExtra("userName")
         get<SchoolDb>().userDao().getAllData().find { it.username == userName }?.let {
-            getActivityContext().displayMessage(it.toString())
-        } ?: getActivityContext().displayMessage(Messages.USER_NOT_FOUND)
+            requireContext().displayMessage(it.toString())
+        } ?: requireContext().displayMessage(Messages.USER_NOT_FOUND)
     }
     private fun goSettings() {
         binding.buttonSettings.setOnClickListener {
-            getActivityContext().navigate(SettingsActivity::class.java)
+            requireContext().navigate(SettingsActivity::class.java)
         }
     }
 }
