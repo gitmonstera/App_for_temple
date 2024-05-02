@@ -16,8 +16,7 @@ fun Context.displayMessage(message : String) = Toast.makeText(
     this, message, Toast.LENGTH_LONG
 ).show()
 //переход на экран. Пример использования: navigate(Enter_Form::class.java)
-fun<T> AppCompatActivity.navigate(javaClass : Class<T>) {
+fun<T> Context.navigate(javaClass : Class<T>) {
     val intent = Intent(this, javaClass)
     startActivity(intent)
 }
-fun Fragment.getActivityContext() = activity as AppCompatActivity

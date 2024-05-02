@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.apptemple.databinding.FragmentHomeBinding
-import com.example.apptemple.utils.getActivityContext
 import com.example.apptemple.utils.navigate
 
 class home : Fragment() {
@@ -35,7 +34,7 @@ class home : Fragment() {
     }
     private fun goSettings() {
         binding.buttonSettings.setOnClickListener {
-            getActivityContext().navigate(SettingsActivity::class.java)
+            requireContext().navigate(SettingsActivity::class.java)
         }
     }
 }
