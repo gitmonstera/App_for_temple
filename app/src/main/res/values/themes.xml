@@ -6,8 +6,4 @@
     </style>
 
     <style name="Theme.AppTemple" parent="Base.Theme.AppTemple" />
-
-    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/lightBlue</item>
-    </style>
 </resources>

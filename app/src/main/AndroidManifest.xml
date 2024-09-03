@@ -3,13 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
 
     <application
-        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -20,16 +18,16 @@
         android:theme="@style/Theme.AppTemple"
         tools:targetApi="31">
         <activity
-            android:name=".SettingsActivity"
+            android:name=".Settings_Activity"
             android:exported="false" />
         <activity
-            android:name=".Register_Form"
+            android:name=".App_Activity"
             android:exported="false" />
         <activity
-            android:name=".Enter_Form"
+            android:name=".Register_Activity"
             android:exported="false" />
         <activity
-            android:name=".News_Feed"
+            android:name=".Enter_Activity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,6 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
