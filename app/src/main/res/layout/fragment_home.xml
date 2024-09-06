@@ -21,6 +21,10 @@
                             android:src="@mipmap/justannounce"
                             android:scaleType="fitXY"/>
 
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

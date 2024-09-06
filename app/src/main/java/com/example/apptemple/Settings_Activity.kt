@@ -1,5 +1,6 @@
 package com.example.apptemple
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,11 +20,19 @@ class Settings_Activity : AppCompatActivity() {
             insets
         }
         goBack()
+        goEnter()
     }
 
     private fun goBack() {
         binding.backButton.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun goEnter() {
+        binding.exitButton.setOnClickListener {
+            val intent = Intent(this, Enter_Activity::class.java)
+            startActivity(intent)
         }
     }
 }

@@ -25,6 +25,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <Button
+        android:id="@+id/exitButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Выйти из аккаунта"

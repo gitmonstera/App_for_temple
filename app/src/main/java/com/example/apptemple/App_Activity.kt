@@ -1,9 +1,11 @@
 package com.example.apptemple
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
+import android.widget.Toast.makeText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -65,4 +67,22 @@ class App_Activity : AppCompatActivity() {
         }
     }
 
+    private var pressedTime: Long = 0
+    private lateinit var toast: Toast
+
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+        val currentTime = System.currentTimeMillis()
+
+        if (currentTime - pressedTime < 2000) {
+            toast.cancel()
+            super.finishAffinity()
+            return
+        }
+        else {
+            toast = Toast.makeText(this, "Нажмите ещё раз для выхода", Toast.LENGTH_SHORT)
+            toast.show()
+        }
+        pressedTime = currentTime
+    }
 }

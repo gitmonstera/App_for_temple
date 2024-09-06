@@ -54,61 +54,28 @@ class HomeFragment : Fragment() {
             true
         }
 
-        changeAnnounces(null)
+        changeAnnounces()
     }
 
-    private fun changeAnnounces(isSwipeRight: Boolean?) {
-        if (isSwipeRight == null) {
-            updateImage()
-        } else {
-            animateImageItem(binding.announceSlider, isSwipeRight) {
-                updateImage()
-                animateImageIn(binding.announceSlider, isSwipeRight)
-            }
-        }
-    }
-
-    private fun updateImage() {
+    private fun changeAnnounces() {
         when(counter) {
-            0 -> binding.announceSlider.setImageResource(R.mipmap.justannounce)
-            1 -> binding.announceSlider.setImageResource(R.mipmap.justannounce2)
-            2 -> binding.announceSlider.setImageResource(R.mipmap.justannounce3)
-            3 -> binding.announceSlider.setImageResource(R.mipmap.justannounce4)
-            4 -> binding.announceSlider.setImageResource(R.mipmap.justannounce5)
+            0 -> {
+                binding.announceSlider.setImageResource(R.mipmap.justannounce)
+                //Тут сделать смену строки с точками-индикаторами
+            }
+            1 -> {
+                binding.announceSlider.setImageResource(R.mipmap.justannounce2)
+            }
+            2 -> {
+                binding.announceSlider.setImageResource(R.mipmap.justannounce3)
+            }
+            3 -> {
+                binding.announceSlider.setImageResource(R.mipmap.justannounce4)
+            }
+            4 -> {
+                binding.announceSlider.setImageResource(R.mipmap.justannounce5)
+            }
         }
-    }
-
-    private fun animateImageItem (imageView: ImageView, isSwipeRight: Boolean, onAnimationEnd: () -> Unit) {
-        val fromXDelta = if (isSwipeRight) 0f else imageView.width.toFloat()
-        val toXDelta = if (isSwipeRight) -imageView.width.toFloat() else 0f
-
-        val slideOut = TranslateAnimation(fromXDelta, toXDelta, 0f, 0f)
-        slideOut.duration = 300
-
-        slideOut.setAnimationListener(object  : Animation.AnimationListener {
-
-            override fun onAnimationStart(p0: Animation?) {
-            }
-
-            override fun onAnimationEnd(p0: Animation?) {
-                onAnimationEnd()
-            }
-
-            override fun onAnimationRepeat(p0: Animation?) {
-            }
-        })
-
-        imageView.startAnimation(slideOut)
-    }
-
-    private fun animateImageIn(imageView: ImageView, isSwipeRight: Boolean) {
-        val fromXDelta = if (isSwipeRight) -imageView.width.toFloat() else imageView.width.toFloat()
-        val toXDelta = 0f
-
-        val slideIn = TranslateAnimation(fromXDelta, toXDelta, 0f, 0f)
-        slideIn.duration = 300
-
-        imageView.startAnimation(slideIn)
     }
 
     private inner class GestureListener : GestureDetector.SimpleOnGestureListener() {
@@ -145,7 +112,7 @@ class HomeFragment : Fragment() {
             Log.d(TAG, "Свайп вправо обнаружен")
             if (counter > MIN_COUNTER) {
                 counter--
-                changeAnnounces(isSwipeRight = true)
+                changeAnnounces()
             } else {
                 Toast.makeText(context, "Достигнут предел слева", Toast.LENGTH_SHORT).show()
             }
@@ -156,7 +123,7 @@ class HomeFragment : Fragment() {
             Log.d(TAG, "Свайп влево обнаружен")
             if (counter < MAX_COUNTER) {
                 counter++
-                changeAnnounces(isSwipeRight = false)
+                changeAnnounces()
             } else {
                 Toast.makeText(context, "Достигнут предел справа", Toast.LENGTH_SHORT).show()
             }
