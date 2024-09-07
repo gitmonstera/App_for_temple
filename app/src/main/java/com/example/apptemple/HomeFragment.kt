@@ -61,19 +61,23 @@ class HomeFragment : Fragment() {
         when(counter) {
             0 -> {
                 binding.announceSlider.setImageResource(R.mipmap.justannounce)
-                //Тут сделать смену строки с точками-индикаторами
+                binding.announceIndicator.setImageResource(R.mipmap.first_slider_indicator)
             }
             1 -> {
                 binding.announceSlider.setImageResource(R.mipmap.justannounce2)
+                binding.announceIndicator.setImageResource(R.mipmap.second_slider_indicator)
             }
             2 -> {
                 binding.announceSlider.setImageResource(R.mipmap.justannounce3)
+                binding.announceIndicator.setImageResource(R.mipmap.third_slider_indicator)
             }
             3 -> {
                 binding.announceSlider.setImageResource(R.mipmap.justannounce4)
+                binding.announceIndicator.setImageResource(R.mipmap.fourth_slider_indicator)
             }
             4 -> {
                 binding.announceSlider.setImageResource(R.mipmap.justannounce5)
+                binding.announceIndicator.setImageResource(R.mipmap.fifth_slider_indicator)
             }
         }
     }

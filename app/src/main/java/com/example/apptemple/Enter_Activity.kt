@@ -1,6 +1,7 @@
 package com.example.apptemple
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -23,6 +24,7 @@ class Enter_Activity : AppCompatActivity() {
         }
         toRegisterActivity()
         enterCheck()
+        enterData()
     }
 
     private fun enterCheck() {
@@ -43,5 +45,12 @@ class Enter_Activity : AppCompatActivity() {
             val intent = Intent(this, Register_Activity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun enterData() {
+        val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
+
+        val userLogin = sharedPreferences.getString("login", "")
+        binding.enterLoginEdit.setText(userLogin)
     }
 }
