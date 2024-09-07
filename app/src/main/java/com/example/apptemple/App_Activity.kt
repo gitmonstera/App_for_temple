@@ -34,19 +34,19 @@ class App_Activity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.homeItem -> {
                     loadFragment(HomeFragment())
-                    binding.frameName.setText("Главная")
+                    binding.frameName.text = "Главная"
                     true
                 }
 
                 R.id.lessonsItem -> {
                     loadFragment(LessonsFragment())
-                    binding.frameName.setText("Секции")
+                    binding.frameName.text = "Секции"
                     true
                 }
 
                 R.id.profileItem -> {
                     loadFragment(ProfileFragment())
-                    binding.frameName.setText("Профиль")
+                    binding.frameName.text = "Профиль"
                     true
                 }
                 else -> false

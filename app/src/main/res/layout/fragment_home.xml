@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".HomeFragment"
+    android:background="@color/white">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -22,8 +23,10 @@
                             android:scaleType="fitXY"/>
 
                         <ImageView
+                            android:id="@+id/announceIndicator"
                             android:layout_width="match_parent"
-                            android:layout_height="15dp" />
+                            android:layout_height="15dp"
+                            android:src="@mipmap/first_slider_indicator"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"

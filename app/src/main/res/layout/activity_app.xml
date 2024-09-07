@@ -5,20 +5,23 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".App_Activity">
+    tools:context=".App_Activity"
+    android:background="@color/white">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/rectangle_bottom_black">
 
         <TextView
             android:id="@+id/frameName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Главная"
-            android:textSize="25sp"/>
+            android:textSize="25sp"
+            android:textColor="@color/black"/>
 
         <ImageView
             android:id="@+id/settingsButton"
@@ -42,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_menu"/>
+        app:menu="@menu/bottom_menu"
+        android:background="@color/lightGray"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
