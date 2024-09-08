@@ -37,13 +37,20 @@ class Register_Activity : AppCompatActivity() {
             if (binding.agreeCheckBox.isChecked) {
                 val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
                 val editor = sharedPreferences.edit()
+                val passCheck = sharedPreferences.getBoolean("passChecker", false)
+
+                //Логин сохраняется в любом случае
                 editor.putString("login", userLogin)
 
-                //Здесь сделать булеву переменную для сохренения пароля
-                editor.putString("password", userPassword)
+                //Проверка и если пользователь согласился, то сохраняем пароль
+                if (passCheck) {
+                    editor.putString("password", userPassword)
+                }else {
+                    Toast.makeText(this, "Пароль не сохранен", Toast.LENGTH_SHORT).show()
+                }
                 editor.apply()
 
-                Toast.makeText(this, "Проверьте E-mail: ${userEmail}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Проверьте E-mail: $userEmail", Toast.LENGTH_SHORT).show()
             }else {
                 binding.agreeCheckBox.setTextColor(resources.getColor(R.color.red))
             }
