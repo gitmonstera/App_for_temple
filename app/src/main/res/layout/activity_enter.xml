@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Enter_Activity"
     android:orientation="vertical"
-    android:background="@mipmap/light_background">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,6 +41,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="35dp"
             android:layout_marginBottom="35dp"
+            android:singleLine="true"
             android:ems="12"
             android:hint="Логин"
             android:textColorHint="@color/black" />
@@ -51,6 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="1dp"
+            android:singleLine="true"
             android:ems="12"
             android:hint="Пароль"
             android:textColorHint="@color/black" />
@@ -60,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Запомнить пароль"/>
+            android:text="Запомнить пароль" />
 
         <Button
             android:id="@+id/enterEnterButton"

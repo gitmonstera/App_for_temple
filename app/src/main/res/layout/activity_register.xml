@@ -75,7 +75,8 @@
             android:inputType="number"
             android:hint="Возраст"
             android:textColorHint="@color/gray"
-            android:layout_marginTop="45dp"/>
+            android:layout_marginTop="45dp"
+            android:singleLine="true"/>
 
         <CheckBox
             android:id="@+id/agreeCheckBox"
