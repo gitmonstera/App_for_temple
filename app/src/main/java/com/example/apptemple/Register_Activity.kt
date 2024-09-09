@@ -1,5 +1,6 @@
 package com.example.apptemple
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -22,7 +23,9 @@ class Register_Activity : AppCompatActivity() {
         toEnterActivity()
         completeRegister()
     }
+
     private fun toEnterActivity() {
+        //При возвращении назад просто завершаем текущий активити
         binding.registerEnterButton.setOnClickListener{
             finish()
         }
@@ -33,14 +36,15 @@ class Register_Activity : AppCompatActivity() {
             val userEmail = binding.registerMailEdit.text.toString()
             val userLogin = binding.registerLoginEdit.text.toString()
             val userPassword = binding.registerPasswordEdit.text.toString()
+            val intent = Intent(this, Enter_Activity::class.java)
 
+            //Проверка и если пользователь согласился, то сохраняем логин и пароль
             if (binding.agreeCheckBox.isChecked) {
                 val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
                 val editor = sharedPreferences.edit()
                 val passCheck = sharedPreferences.getBoolean("passChecker", false)
 
-
-                //Проверка и если пользователь согласился, то сохраняем пароль
+                //Проверка флажка "Запомнить меня"
                 if (passCheck) {
                     editor.putString("login", userLogin)
                     editor.putString("password", userPassword)
@@ -53,6 +57,9 @@ class Register_Activity : AppCompatActivity() {
             }else {
                 binding.agreeCheckBox.setTextColor(resources.getColor(R.color.red))
             }
+
+            //Создается новый активити для корректной подстановки значений
+            startActivity(intent)
         }
     }
 }
