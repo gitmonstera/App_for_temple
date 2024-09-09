@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Запомнить пароль" />
+            android:text="Запомнить меня" />
 
         <Button
             android:id="@+id/enterEnterButton"

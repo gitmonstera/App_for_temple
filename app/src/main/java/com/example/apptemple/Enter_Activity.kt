@@ -45,11 +45,16 @@ class Enter_Activity : AppCompatActivity() {
 
     private fun enterData() {
         val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
-
         userLogin = sharedPreferences.getString("login", "")
-        binding.enterLoginEdit.setText(userLogin)
         userPassword = sharedPreferences.getString("password", "")
-        binding.enterPasswordEdit.setText(userPassword)
+        val passChecker = sharedPreferences.getBoolean("passChecker", false)
+
+        binding.passwordCheckbox.isChecked = passChecker
+
+        if (passChecker) {
+            binding.enterLoginEdit.setText(userLogin)
+            binding.enterPasswordEdit.setText(userPassword)
+        }
     }
 
     private fun passwordCheck() {
