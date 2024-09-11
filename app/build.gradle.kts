@@ -48,7 +48,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("io.ktor:ktor-client-okhttp:1.6.3")
 
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    //Ретрофит для парсинга API и конвертер для их чтения
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

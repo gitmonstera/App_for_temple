@@ -1,5 +1,6 @@
 package com.example.apptemple
 
+import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -21,9 +22,10 @@ import com.google.android.material.textfield.TextInputLayout.LengthCounter
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var gestureDetector: GestureDetectorCompat
+    private lateinit var gestureDetector: GestureDetectorCompat     //Переменная для считывания жестов
     private var counter = 0
 
+    //Переменные для считывания работы жестов
     companion object {
         private const val TAG = "HomeFragment"
         private const val COUNTER_KEY = "counter_key"
@@ -31,6 +33,7 @@ class HomeFragment : Fragment() {
         private const val MIN_COUNTER = 0
     }
 
+    //Функция с конфигурацией запуска (тут менять нечего)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,9 +42,11 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Сохранение изначального положения жеста
         savedInstanceState?.let {
             counter = it.getInt(COUNTER_KEY, 0)
         }
@@ -57,31 +62,28 @@ class HomeFragment : Fragment() {
         changeAnnounces()
     }
 
+    //Статичные фотографии заменить на фотки с сервака
     private fun changeAnnounces() {
         when(counter) {
             0 -> {
                 binding.announceSlider.setImageResource(R.mipmap.justannounce)
-                binding.announceIndicator.setImageResource(R.mipmap.first_slider_indicator)
             }
             1 -> {
                 binding.announceSlider.setImageResource(R.mipmap.justannounce2)
-                binding.announceIndicator.setImageResource(R.mipmap.second_slider_indicator)
             }
             2 -> {
                 binding.announceSlider.setImageResource(R.mipmap.justannounce3)
-                binding.announceIndicator.setImageResource(R.mipmap.third_slider_indicator)
             }
             3 -> {
                 binding.announceSlider.setImageResource(R.mipmap.justannounce4)
-                binding.announceIndicator.setImageResource(R.mipmap.fourth_slider_indicator)
             }
             4 -> {
                 binding.announceSlider.setImageResource(R.mipmap.justannounce5)
-                binding.announceIndicator.setImageResource(R.mipmap.fifth_slider_indicator)
             }
         }
     }
 
+    //Функция для считывания жестов и их длины 卐
     private inner class GestureListener : GestureDetector.SimpleOnGestureListener() {
         private val SWIPE_THRESHOLD = 100
         private val SWIPE_VELOCITY_THRESHOLD = 100
@@ -111,6 +113,7 @@ class HomeFragment : Fragment() {
             }
         }
 
+        //Функция для считывания свайпа вправо
         private fun onSwipeRight() {
             //Обработчик свайпа вправо
             Log.d(TAG, "Свайп вправо обнаружен")
@@ -121,7 +124,7 @@ class HomeFragment : Fragment() {
                 Toast.makeText(context, "Достигнут предел слева", Toast.LENGTH_SHORT).show()
             }
         }
-
+        //Функция для считывания свайпа влево
         private fun onSwipeLeft() {
             //Обработчик свайпа влево
             Log.d(TAG, "Свайп влево обнаружен")
@@ -133,6 +136,8 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
+    //Функция для сохранения текущего состояния
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(COUNTER_KEY, counter)

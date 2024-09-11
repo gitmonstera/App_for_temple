@@ -18,28 +18,30 @@
         android:theme="@style/Theme.AppTemple"
         tools:targetApi="31">
         <activity
-            android:name=".Settings_Activity"
-            android:screenOrientation="portrait"
+            android:name=".Question_Activity"
             android:exported="false" />
+        <activity
+            android:name=".Settings_Activity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".App_Activity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Register_Activity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Enter_Activity"
-            android:screenOrientation="portrait"
-            android:exported="true" >
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

@@ -1,15 +1,14 @@
 package com.example.apptemple
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.apptemple.databinding.ActivitySettingsBinding
+import com.example.apptemple.databinding.ActivityQuestionBinding
 
-class Settings_Activity : AppCompatActivity() {
-    private val binding by lazy { ActivitySettingsBinding.inflate(layoutInflater) }
+class Question_Activity : AppCompatActivity() {
+    private val binding by lazy { ActivityQuestionBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,21 +19,11 @@ class Settings_Activity : AppCompatActivity() {
             insets
         }
         goBack()
-        goExit()
     }
 
-    //При нажатии на кнопку "Назад" просто завершаем текущий активити
     private fun goBack() {
         binding.backButton.setOnClickListener {
             finish()
-        }
-    }
-
-    //При нажатии кнопки "Выйти из аккаунта" перезапускаем до активити входа
-    private fun goExit() {
-        binding.exitButton.setOnClickListener {
-            val intent = Intent(this, Enter_Activity::class.java)
-            startActivity(intent)
         }
     }
 }

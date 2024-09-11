@@ -12,6 +12,7 @@ import com.example.apptemple.databinding.ActivityEnterBinding
 import kotlinx.coroutines.CoroutineScope
 
 class Enter_Activity : AppCompatActivity() {
+    //Инициализация биндинга и глобальных переменных для более удобной передачи
     private val binding by lazy { ActivityEnterBinding.inflate(layoutInflater) }
     private var userLogin: String? = null
     private var userPassword: String? = null
@@ -31,9 +32,11 @@ class Enter_Activity : AppCompatActivity() {
     }
 
     private fun enterCheck() {
+        //Создание исполнителя для переключения активити
         val intent = Intent(this, App_Activity::class.java)
+
+        //При нажатии на кнопку данные логина и пароля проверяются с данными из кэша и либо осуществляется вход, либо выводится сообщение об ошибке
         binding.enterEnterButton.setOnClickListener {
-            //Проверка данных с сохраненными
             if (binding.enterLoginEdit.text.toString() == userLogin && binding.enterPasswordEdit.text.toString() == userPassword) {
                 startActivity(intent)
             }
@@ -44,23 +47,34 @@ class Enter_Activity : AppCompatActivity() {
     }
 
     private fun enterData() {
+        //Переменная для ввода и вывода данных из кэша
         val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
-
         userLogin = sharedPreferences.getString("login", "")
-        binding.enterLoginEdit.setText(userLogin)
         userPassword = sharedPreferences.getString("password", "")
-        binding.enterPasswordEdit.setText(userPassword)
+        val passChecker = sharedPreferences.getBoolean("passChecker", false)
+
+        //Галочка "Запомнить меня" привязана к флажку и в зависимости от первоначального выбора будет вкл/выкл
+        binding.passwordCheckbox.isChecked = passChecker
+
+        //Если разрешение есть, то логин и пароль выводятся в поля
+        if (passChecker) {
+            binding.enterLoginEdit.setText(userLogin)
+            binding.enterPasswordEdit.setText(userPassword)
+        }
     }
 
     private fun passwordCheck() {
+        //Переменная для ввода и вывода данных из кэша
         val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
+        //При нажатии на кнопку "Зарегистрироваться" состояние флажка сохраняется в кэш
         binding.enterRegisterButton.setOnClickListener {
             val passChecker = binding.passwordCheckbox.isChecked
             editor.putBoolean("passChecker", passChecker)
             editor.apply()
 
+            //Инициализация исполнителя и его запуск(переход на активити регистрации)
             val intent = Intent(this, Register_Activity::class.java)
             startActivity(intent)
         }
