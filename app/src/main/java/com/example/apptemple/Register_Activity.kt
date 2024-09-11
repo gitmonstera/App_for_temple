@@ -32,6 +32,7 @@ class Register_Activity : AppCompatActivity() {
     }
 
     private fun completeRegister() {
+        //При нажатии на кнопку инициализируются переменные для: записи данных в кэш и переключения на другой активити
         binding.registerRegisterButton.setOnClickListener{
             val userEmail = binding.registerMailEdit.text.toString()
             val userLogin = binding.registerLoginEdit.text.toString()
@@ -44,7 +45,7 @@ class Register_Activity : AppCompatActivity() {
                 val editor = sharedPreferences.edit()
                 val passCheck = sharedPreferences.getBoolean("passChecker", false)
 
-                //Проверка флажка "Запомнить меня"
+                //Проверка флажка "Запомнить меня" и сохранение данных соответственно
                 if (passCheck) {
                     editor.putString("login", userLogin)
                     editor.putString("password", userPassword)
@@ -53,13 +54,15 @@ class Register_Activity : AppCompatActivity() {
                 }
                 editor.apply()
 
+                //Проверочный тост с сообщением (Нужно будет заменить на плашку с уведомлением)
                 Toast.makeText(this, "Проверьте E-mail: $userEmail", Toast.LENGTH_SHORT).show()
+
+                //Создается новый активити для корректной подстановки значений
+                startActivity(intent)
             }else {
+                //Если пользователь не согласился с политикой конфиденциальности она отмечается красным и не дает зарегистрироваться
                 binding.agreeCheckBox.setTextColor(resources.getColor(R.color.red))
             }
-
-            //Создается новый активити для корректной подстановки значений
-            startActivity(intent)
         }
     }
 }

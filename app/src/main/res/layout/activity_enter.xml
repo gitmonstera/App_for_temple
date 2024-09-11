@@ -44,6 +44,7 @@
             android:singleLine="true"
             android:ems="12"
             android:hint="Логин"
+            android:textColor="@color/black"
             android:textColorHint="@color/black" />
 
         <EditText
@@ -55,6 +56,7 @@
             android:singleLine="true"
             android:ems="12"
             android:hint="Пароль"
+            android:textColor="@color/black"
             android:textColorHint="@color/black" />
 
         <CheckBox
@@ -62,7 +64,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Запомнить меня" />
+            android:text="Запомнить меня"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/enterEnterButton"

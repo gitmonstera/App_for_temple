@@ -7,12 +7,13 @@
     android:title="Главная" />
 
     <item
+        android:id="@+id/lessonsItem"
+        android:icon="@mipmap/lessons_icon"
+        android:title="Кружки" />
+
+    <item
         android:id="@+id/profileItem"
         android:icon="@mipmap/profile_icon"
         android:title="Профиль" />
 
-    <item
-        android:id="@+id/lessonsItem"
-        android:icon="@mipmap/lessons_icon"
-        android:title="Секции" />
 </menu>

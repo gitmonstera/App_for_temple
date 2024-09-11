@@ -6,4 +6,7 @@
     <color name="red">#FF0000</color>
     <color name="lightBlue">#3579DE</color>
     <color name="lightGray">#D9D5D5</color>
+    <color name="ellipseBackground">#E567B0FA</color>
+    <color name="ellipseStroke">#0075FF</color>
+    <color name="rectangleBackground">#D9D9D9</color>
 </resources>
