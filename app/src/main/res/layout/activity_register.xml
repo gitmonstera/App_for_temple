@@ -41,6 +41,7 @@
             android:hint="E-Mail"
             android:inputType="textEmailAddress"
             android:textColorHint="@color/gray"
+            android:textColor="@color/black"
             android:singleLine="true"/>
 
         <EditText
@@ -51,6 +52,7 @@
             android:ems="12"
             android:hint="Логин"
             android:textColorHint="@color/gray"
+            android:textColor="@color/black"
             android:layout_marginTop="45dp"
             android:singleLine="true"
             />
@@ -63,6 +65,7 @@
             android:ems="12"
             android:hint="Пароль"
             android:textColorHint="@color/gray"
+            android:textColor="@color/black"
             android:layout_marginTop="45dp"
             android:singleLine="true"/>
 
@@ -75,6 +78,7 @@
             android:inputType="number"
             android:hint="Возраст"
             android:textColorHint="@color/gray"
+            android:textColor="@color/black"
             android:layout_marginTop="45dp"
             android:singleLine="true"/>
 
@@ -85,6 +89,7 @@
             android:layout_gravity="center"
             android:textAlignment="center"
             android:layout_marginTop="15dp"
+            android:textColor="@color/black"
             android:text="Я принимаю условия \n политики конфиденциальности"/>
 
         <Button
@@ -94,6 +99,7 @@
             android:layout_gravity="center"
             android:text="Зарегистрироваться"
             android:textSize="20dp"
+            android:textColor="@color/white"
             android:paddingHorizontal="25dp"
             android:paddingVertical="10dp"
             android:layout_marginTop="0dp"
@@ -123,6 +129,7 @@
             android:layout_gravity="center"
             android:text="Войти"
             android:textSize="20dp"
+            android:textColor="@color/white"
             android:paddingHorizontal="25dp"
             android:paddingVertical="10dp"
             android:backgroundTint="@color/lightBlue"/>
