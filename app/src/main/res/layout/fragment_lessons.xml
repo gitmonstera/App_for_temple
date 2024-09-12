@@ -25,6 +25,7 @@
             android:paddingStart="35dp"
             android:singleLine="true"
             android:hint="Поиск по кружкам"
+            android:textColorHint="@color/gray"
             android:background="@android:color/transparent"/>
 
         <ImageView
@@ -49,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:background="@android:color/transparent">
+                android:backgroundTint="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -65,6 +66,7 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:text="Кружок рисования"
+                        android:textColor="@color/black"
                         android:gravity="center|start"/>
 
                     <Button
@@ -99,6 +101,7 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:text="Кружок рисования"
+                        android:textColor="@color/black"
                         android:gravity="center|start"/>
 
                     <Button
@@ -133,6 +136,7 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:text="Кружок рисования"
+                        android:textColor="@color/black"
                         android:gravity="center|start"/>
 
                     <Button
@@ -167,6 +171,7 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:text="Кружок рисования"
+                        android:textColor="@color/black"
                         android:gravity="center|start"/>
 
                     <Button
@@ -201,6 +206,7 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:text="Кружок рисования"
+                        android:textColor="@color/black"
                         android:gravity="center|start"/>
 
                     <Button
@@ -235,6 +241,7 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:text="Кружок рисования"
+                        android:textColor="@color/black"
                         android:gravity="center|start"/>
 
                     <Button
@@ -269,6 +276,7 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:text="Кружок рисования"
+                        android:textColor="@color/black"
                         android:gravity="center|start"/>
 
                     <Button
@@ -303,6 +311,7 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:text="Кружок рисования"
+                        android:textColor="@color/black"
                         android:gravity="center|start"/>
 
                     <Button
@@ -337,6 +346,7 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:text="Кружок рисования"
+                        android:textColor="@color/black"
                         android:gravity="center|start"/>
 
                     <Button
@@ -371,6 +381,7 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:text="Кружок рисования"
+                        android:textColor="@color/black"
                         android:gravity="center|start"/>
 
                     <Button
@@ -405,6 +416,7 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:text="Кружок рисования"
+                        android:textColor="@color/black"
                         android:gravity="center|start"/>
 
                     <Button
@@ -439,6 +451,7 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:text="Кружок рисования"
+                        android:textColor="@color/black"
                         android:gravity="center|start"/>
 
                     <Button
@@ -473,6 +486,7 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:text="Кружок рисования"
+                        android:textColor="@color/black"
                         android:gravity="center|start"/>
 
                     <Button
