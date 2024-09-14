@@ -4,9 +4,16 @@
     <color name="gray">#747474</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
-    <color name="lightBlue">#3579DE</color>
+    <color name="lightBlue">#A3CDFF</color>
+    <color name="lightBlack">#404040</color>
     <color name="lightGray">#D9D5D5</color>
     <color name="ellipseBackground">#E567B0FA</color>
     <color name="ellipseStroke">#0075FF</color>
     <color name="rectangleBackground">#D9D9D9</color>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryVariant">#1976D2</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="statusBarColor">#FFFFFF</color>
+    <color name="navigationBarColor">#FFFFFF</color>
+
 </resources>

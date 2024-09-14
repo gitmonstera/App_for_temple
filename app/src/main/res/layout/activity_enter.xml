@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".Enter_Activity"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@mipmap/back"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,8 +25,7 @@
             android:textAlignment="center"
             android:layout_gravity="bottom|center"
             android:text="Вход"
-            android:textSize="50dp"
-            android:textColor="@color/black"/>
+            android:textSize="50dp" />
 
     </LinearLayout>
 
@@ -45,9 +45,7 @@
             android:layout_marginBottom="35dp"
             android:singleLine="true"
             android:ems="12"
-            android:hint="Логин"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            android:hint="Логин" />
 
         <EditText
             android:fontFamily="@font/montserrat_regular"
@@ -58,9 +56,7 @@
             android:layout_marginBottom="1dp"
             android:singleLine="true"
             android:ems="12"
-            android:hint="Пароль"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            android:hint="Пароль" />
 
         <CheckBox
             android:fontFamily="@font/montserrat_regular"
@@ -68,8 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Запомнить меня"
-            android:textColor="@color/black"/>
+            android:text="Запомнить меня" />
 
         <Button
             android:fontFamily="@font/montserrat_regular"
@@ -81,8 +76,8 @@
             android:paddingHorizontal="35dp"
             android:paddingVertical="15dp"
             android:text="Войти"
-            android:textSize="20dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/lightBlack"
+            android:textSize="20dp" />
 
     </LinearLayout>
 
@@ -99,8 +94,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
             android:text="Ещё нет аккаунта?"
-            android:textSize="28dp"
-            android:textColor="@color/black"/>
+            android:textSize="18dp" />
 
         <Button
             android:fontFamily="@font/montserrat_regular"
@@ -108,13 +102,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:backgroundTint="@color/lightBlue"
+            android:textColor="@color/lightBlack"
             android:text="Зарегистрироваться"
-            android:textSize="20dp"
-            android:textColor="@color/lightBlue"
+            android:textSize="19dp"
             android:paddingHorizontal="25dp"
-            android:paddingVertical="10dp"
-            android:backgroundTint="@color/white" />
+            android:paddingVertical="10dp" />
 
     </LinearLayout>
-
 </LinearLayout>
