@@ -35,6 +35,7 @@
             android:src="@drawable/baseline_settings_24" />
 
         <ImageView
+            android:id="@+id/scheduleButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="end"
