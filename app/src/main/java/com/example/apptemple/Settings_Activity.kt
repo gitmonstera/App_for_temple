@@ -37,8 +37,7 @@ class Settings_Activity : AppCompatActivity() {
     //При нажатии кнопки "Выйти из аккаунта" перезапускаем до активити входа
     private fun goExit() {
         binding.exitButton.setOnClickListener {
-            val intent = Intent(this, Enter_Activity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, Enter_Activity::class.java))
         }
     }
 }
