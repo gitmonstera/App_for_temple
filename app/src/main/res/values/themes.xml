@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+    <color name="Theme.AppTemple">#b0b0ff</color>
     <style name="Theme.AppTemple" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
-        <item name="colorOnPrimary">@color/colorOnPrimary</item>
-        <item name="android:statusBarColor">@color/statusBarColor</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:colorBackground">@color/whiteTwo</item>
+        <item name="colorPrimaryDark">@color/primaryColorDark</item>
+        <item name="android:statusBarColor">@color/primaryColorDark</item>
         <!-- Другие настройки вашей темы -->
     </style>
 </resources>

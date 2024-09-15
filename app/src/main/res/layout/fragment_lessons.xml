@@ -9,7 +9,6 @@
     android:orientation="vertical"
     tools:context=".LessonsFragment">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -103,6 +102,7 @@
                     android:paddingVertical="10dp">
 
                     <TextView
+                        android:fontFamily="@font/montserrat_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -110,6 +110,7 @@
                         android:text="Кружок рисования" />
 
                     <Button
+                        android:fontFamily="@font/montserrat_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
@@ -125,7 +126,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:backgroundTint="@color/white">
+                android:backgroundTint="@color/white"
+                app:cardElevation="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -140,6 +142,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_regular"
                         android:gravity="center|start"
                         android:text="Кружок рисования" />
 
@@ -148,346 +151,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:backgroundTint="@color/white"
-                        android:text="Подробнее"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:backgroundTint="@color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/gray_rectangle"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="25dp"
-                    android:paddingVertical="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center|start"
-                        android:text="Кружок рисования" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:backgroundTint="@color/white"
-                        android:text="Подробнее"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:backgroundTint="@color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/gray_rectangle"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="25dp"
-                    android:paddingVertical="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center|start"
-                        android:text="Кружок рисования" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:backgroundTint="@color/white"
-                        android:text="Подробнее"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:backgroundTint="@color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/gray_rectangle"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="25dp"
-                    android:paddingVertical="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center|start"
-                        android:text="Кружок рисования" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:backgroundTint="@color/white"
-                        android:text="Подробнее"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:backgroundTint="@color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/gray_rectangle"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="25dp"
-                    android:paddingVertical="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center|start"
-                        android:text="Кружок рисования" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:backgroundTint="@color/white"
-                        android:text="Подробнее"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:backgroundTint="@color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/gray_rectangle"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="25dp"
-                    android:paddingVertical="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center|start"
-                        android:text="Кружок рисования" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:backgroundTint="@color/white"
-                        android:text="Подробнее"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:backgroundTint="@color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/gray_rectangle"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="25dp"
-                    android:paddingVertical="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center|start"
-                        android:text="Кружок рисования" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:backgroundTint="@color/white"
-                        android:text="Подробнее"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:backgroundTint="@color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/gray_rectangle"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="25dp"
-                    android:paddingVertical="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center|start"
-                        android:text="Кружок рисования" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:backgroundTint="@color/white"
-                        android:text="Подробнее"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:backgroundTint="@color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/gray_rectangle"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="25dp"
-                    android:paddingVertical="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center|start"
-                        android:text="Кружок рисования" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:backgroundTint="@color/white"
-                        android:text="Подробнее"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:backgroundTint="@color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/gray_rectangle"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="25dp"
-                    android:paddingVertical="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center|start"
-                        android:text="Кружок рисования" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:backgroundTint="@color/white"
-                        android:text="Подробнее"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:backgroundTint="@color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/gray_rectangle"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="25dp"
-                    android:paddingVertical="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center|start"
-                        android:text="Кружок рисования" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:backgroundTint="@color/white"
+                        android:fontFamily="@font/montserrat_regular"
                         android:text="Подробнее"
                         android:textColor="@color/black" />
 
