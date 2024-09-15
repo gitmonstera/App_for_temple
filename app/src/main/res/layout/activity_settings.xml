@@ -26,6 +26,8 @@
     </androidx.appcompat.widget.Toolbar>
 
     <Button
+        android:textColor="@color/lightBlack"
+        android:backgroundTint="@color/lightBlue"
         android:fontFamily="@font/montserrat_regular"
         android:id="@+id/exitButton"
         android:layout_width="match_parent"

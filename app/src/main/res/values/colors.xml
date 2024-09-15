@@ -5,7 +5,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
     <color name="lightBlue">#A3CDFF</color>
-    <color name="lightBlack">#404040</color>
+    <color name="lightBlack">#383838</color>
     <color name="lightGray">#D9D5D5</color>
     <color name="ellipseBackground">#E567B0FA</color>
     <color name="ellipseStroke">#0075FF</color>
