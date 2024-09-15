@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Переопределяем стиль BottomNavigationView -->
+    <style name="CustomBottomNavView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemIconTint">@drawable/bottom_nav_icon_color</item> <!-- Цвет иконок -->
+        <item name="itemTextColor">@drawable/bottom_nav_text_color</item> <!-- Цвет текста -->
+        <item name="itemBackground">@drawable/bottom_style</item> <!-- Фон для кнопок -->
+        <!-- Используйте дополнительные атрибуты, если необходимо -->
+    </style>
+</resources>

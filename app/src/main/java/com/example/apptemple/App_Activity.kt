@@ -2,28 +2,37 @@ package com.example.apptemple
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.apptemple.databinding.ActivityAppBinding
-import androidx.appcompat.app.AppCompatDelegate
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class App_Activity : AppCompatActivity() {
     private val binding by lazy { ActivityAppBinding.inflate(layoutInflater) }
-    private var pressedTime: Long = 0   // Переменная для считывания длины нажатия
-    private lateinit var toast: Toast   // Переменная для вывода тостов (простые сообщения)
+    private var pressedTime: Long = 0
+    private lateinit var toast: Toast
+
+    // Глобальная переменная для отслеживания активного фрагмента
+    private var currentFragmentId: Int = R.id.homeItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
+
+        // Устанавливаем начальный фрагмент, если сохраненного состояния нет
+        if (savedInstanceState == null) {
+            loadFragment(HomeFragment(), FRAGMENT_DIRECTION_FADE)
+            currentFragmentId = R.id.homeItem
+        }
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNavigationView.itemBackground = null
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -31,44 +40,82 @@ class App_Activity : AppCompatActivity() {
             insets
         }
 
-        loadFragment(HomeFragment())
         fragmentChanger()
         toSettingsActivity()
         toQuestionActivity()
         toScheduleActivity()
     }
 
+    companion object {
+        const val FRAGMENT_DIRECTION_RIGHT = 1
+        const val FRAGMENT_DIRECTION_LEFT = 2
+        const val FRAGMENT_DIRECTION_FADE = 3
+    }
+
     // Переключатель фрагментов для Боттом бара
     private fun fragmentChanger() {
-        binding.bottomNavigationView.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.homeItem -> {
-                    loadFragment(HomeFragment())
-                    binding.frameName.text = "Главная"
-                    true
-                }
-
-                R.id.lessonsItem -> {
-                    loadFragment(LessonsFragment())
-                    binding.frameName.text = "Секции"
-                    true
-                }
-
-                R.id.profileItem -> {
-                    loadFragment(ProfileFragment())
-                    binding.frameName.text = "Профиль"
-                    true
-                }
-                else -> false
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            val newFragmentId = item.itemId
+            val direction = when {
+                currentFragmentId == R.id.homeItem && newFragmentId == R.id.lessonsItem -> FRAGMENT_DIRECTION_RIGHT
+                currentFragmentId == R.id.lessonsItem && newFragmentId == R.id.homeItem -> FRAGMENT_DIRECTION_LEFT
+                currentFragmentId == R.id.profileItem && newFragmentId == R.id.lessonsItem -> FRAGMENT_DIRECTION_LEFT
+                currentFragmentId == R.id.lessonsItem && newFragmentId == R.id.profileItem -> FRAGMENT_DIRECTION_RIGHT
+                else -> FRAGMENT_DIRECTION_FADE
             }
+
+            loadFragment(getFragmentById(newFragmentId), direction)
+            binding.frameName.text = when (newFragmentId) {
+                R.id.homeItem -> "Главная"
+                R.id.lessonsItem -> "Секции"
+                R.id.profileItem -> "Профиль"
+                else -> ""
+            }
+
+            // Обновляем текущий фрагмент
+            currentFragmentId = newFragmentId
+            true
         }
     }
 
-    // Функция для смены фрагментов (Инициализируется транзакция фрагментов, которая и осуществляет переключение фрагментов)
-    private fun loadFragment(fragment: Fragment) {
+    // Функция для смены фрагментов
+    private fun loadFragment(fragment: Fragment, direction: Int) {
         val transaction = supportFragmentManager.beginTransaction()
+
+        when (direction) {
+            FRAGMENT_DIRECTION_RIGHT -> {
+                transaction.setCustomAnimations(
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_left
+                )
+            }
+            FRAGMENT_DIRECTION_LEFT -> {
+                transaction.setCustomAnimations(
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_right
+                )
+            }
+            FRAGMENT_DIRECTION_FADE -> {
+                transaction.setCustomAnimations(
+                    R.anim.fade_in,
+                    R.anim.fade_out
+                )
+            }
+        }
+
         transaction.replace(R.id.appFragmentContainer, fragment)
+        transaction.addToBackStack(null)
         transaction.commit()
+    }
+
+    // Функция для получения фрагмента по ID
+    private fun getFragmentById(fragmentId: Int): Fragment {
+        return when (fragmentId) {
+            R.id.homeItem -> HomeFragment()
+            R.id.lessonsItem -> LessonsFragment()
+            R.id.profileItem -> ProfileFragment()
+            else -> HomeFragment()
+        }
     }
 
     // При нажатии на кнопку "Настройки" инициализируется исполнитель и переключает на соответствующий активити
@@ -96,16 +143,13 @@ class App_Activity : AppCompatActivity() {
 
     // Функция для подтверждения выхода двойным нажатием кнопки "Назад"
     override fun onBackPressed() {
-        // Переменная отсчитывающая текущее время
         val currentTime = System.currentTimeMillis()
 
-        // Если от момента нажатия прошло менее 2 секунд, то осуществляется выход из приложения
         if (currentTime - pressedTime < 2000) {
             toast.cancel()
             super.finishAffinity()
             return
         } else {
-            // Если от момента нажатия прошло более 2 секунд, то выводится сообщение
             toast = Toast.makeText(this, "Нажмите ещё раз для выхода", Toast.LENGTH_SHORT)
             toast.show()
         }

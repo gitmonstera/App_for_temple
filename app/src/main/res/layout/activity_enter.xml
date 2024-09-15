@@ -67,16 +67,16 @@
             android:text="Запомнить меня" />
 
         <Button
-            android:textColor="@color/lightBlack"
-            android:fontFamily="@font/montserrat_regular"
             android:id="@+id/enterEnterButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="@color/lightBlue"
+            android:fontFamily="@font/montserrat_regular"
             android:paddingHorizontal="35dp"
             android:paddingVertical="15dp"
             android:text="Войти"
+            android:textColor="@color/lightBlack"
             android:textSize="20dp" />
 
     </LinearLayout>

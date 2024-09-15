@@ -38,6 +38,7 @@ android {
 }
 
 dependencies {
+    implementation ("com.google.android.material:material:1.9.0")
     implementation ("androidx.cardview:cardview:1.0.0")
     implementation("io.insert-koin:koin-core:3.5.3")
     implementation("io.insert-koin:koin-android:3.5.3")
