@@ -99,6 +99,7 @@
             android:text="Я принимаю условия \n политики конфиденциальности"/>
 
         <Button
+            android:textColor="@color/lightBlack"
             android:fontFamily="@font/montserrat_regular"
             android:id="@+id/registerRegisterButton"
             android:layout_width="wrap_content"
@@ -106,7 +107,6 @@
             android:layout_gravity="center"
             android:text="Зарегистрироваться"
             android:textSize="20dp"
-            android:textColor="@color/white"
             android:paddingHorizontal="25dp"
             android:paddingVertical="10dp"
             android:layout_marginTop="0dp"
@@ -131,6 +131,7 @@
             android:textColor="@color/black"/>
 
         <Button
+            android:textColor="@color/lightBlack"
             android:fontFamily="@font/montserrat_regular"
             android:id="@+id/registerEnterButton"
             android:layout_width="wrap_content"
@@ -138,7 +139,6 @@
             android:layout_gravity="center"
             android:text="Войти"
             android:textSize="19dp"
-
             android:paddingHorizontal="25dp"
             android:paddingVertical="10dp"
             android:backgroundTint="@color/lightBlue"/>
