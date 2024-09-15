@@ -1,5 +1,6 @@
 package com.example.apptemple
 
+import androidx.appcompat.app.AppCompatDelegate
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,9 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
         binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }

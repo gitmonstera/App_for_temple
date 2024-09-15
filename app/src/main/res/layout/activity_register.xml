@@ -16,6 +16,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:fontFamily="@font/montserrat_regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
@@ -33,6 +34,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:fontFamily="@font/montserrat_regular"
             android:id="@+id/registerMailEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,6 +47,7 @@
             android:singleLine="true"/>
 
         <EditText
+            android:fontFamily="@font/montserrat_regular"
             android:id="@+id/registerLoginEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,6 +61,7 @@
             />
 
         <EditText
+            android:fontFamily="@font/montserrat_regular"
             android:id="@+id/registerPasswordEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,6 +74,7 @@
             android:singleLine="true"/>
 
         <EditText
+            android:fontFamily="@font/montserrat_regular"
             android:id="@+id/registerAgeEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,6 +88,7 @@
             android:singleLine="true"/>
 
         <CheckBox
+            android:fontFamily="@font/montserrat_regular"
             android:id="@+id/agreeCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,6 +99,7 @@
             android:text="Я принимаю условия \n политики конфиденциальности"/>
 
         <Button
+            android:fontFamily="@font/montserrat_regular"
             android:id="@+id/registerRegisterButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -114,22 +121,24 @@
         android:orientation="vertical">
 
         <TextView
+            android:fontFamily="@font/montserrat_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
-            android:text="Ещё нет аккаунта?"
-            android:textSize="28dp"
+            android:text="Уже есть аккаунт?"
+            android:textSize="18dp"
             android:textColor="@color/black"/>
 
         <Button
+            android:fontFamily="@font/montserrat_regular"
             android:id="@+id/registerEnterButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Войти"
-            android:textSize="20dp"
-            android:textColor="@color/white"
+            android:textSize="19dp"
+
             android:paddingHorizontal="25dp"
             android:paddingVertical="10dp"
             android:backgroundTint="@color/lightBlue"/>
