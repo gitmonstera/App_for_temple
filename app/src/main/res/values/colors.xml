@@ -15,5 +15,8 @@
     <color name="colorOnPrimary">#FFFFFF</color>
     <color name="statusBarColor">#FFFFFF</color>
     <color name="navigationBarColor">#FFFFFF</color>
+    <color name="whiteTwo">#FFAAAA</color>
+    <color name="primaryColor">#FF000000</color>
+    <color name="primaryColorDark">#F57C00</color>
 
 </resources>
