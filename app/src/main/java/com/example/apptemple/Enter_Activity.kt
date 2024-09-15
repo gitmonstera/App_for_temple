@@ -38,13 +38,10 @@ class Enter_Activity : AppCompatActivity() {
     }
 
     private fun enterCheck() {
-        //Создание исполнителя для переключения активити
-        val intent = Intent(this, App_Activity::class.java)
-
         //При нажатии на кнопку данные логина и пароля проверяются с данными из кэша и либо осуществляется вход, либо выводится сообщение об ошибке
         binding.enterEnterButton.setOnClickListener {
             if (binding.enterLoginEdit.text.toString() == userLogin && binding.enterPasswordEdit.text.toString() == userPassword) {
-                startActivity(intent)
+                startActivity(Intent(this, App_Activity::class.java))
             }
             else {
                 Toast.makeText(this, "Введен неверный логин или пароль", Toast.LENGTH_SHORT).show()
@@ -81,8 +78,7 @@ class Enter_Activity : AppCompatActivity() {
             editor.apply()
 
             //Инициализация исполнителя и его запуск(переход на активити регистрации)
-            val intent = Intent(this, Register_Activity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, Register_Activity::class.java))
         }
     }
 }

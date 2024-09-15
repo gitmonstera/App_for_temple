@@ -35,6 +35,7 @@ class App_Activity : AppCompatActivity() {
         fragmentChanger()
         toSettingsActivity()
         toQuestionActivity()
+        toScheduleActivity()
     }
 
     // Переключатель фрагментов для Боттом бара
@@ -72,17 +73,21 @@ class App_Activity : AppCompatActivity() {
 
     // При нажатии на кнопку "Настройки" инициализируется исполнитель и переключает на соответствующий активити
     private fun toSettingsActivity() {
-        val intent = Intent(this, Settings_Activity::class.java)
         binding.settingsButton.setOnClickListener {
-            startActivity(intent)
+            startActivity(Intent(this, Settings_Activity::class.java))
         }
     }
 
     // При нажатии на кнопку осуществляется переход на активити "Вопрос-ответ"
     private fun toQuestionActivity() {
         binding.questionButton.setOnClickListener {
-            val intent = Intent(this, Question_Activity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, Question_Activity::class.java))
+        }
+    }
+
+    private fun toScheduleActivity() {
+        binding.scheduleButton.setOnClickListener {
+            startActivity(Intent(this, Schedule_Activity::class.java))
         }
     }
 
