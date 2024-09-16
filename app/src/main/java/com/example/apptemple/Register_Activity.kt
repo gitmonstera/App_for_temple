@@ -1,10 +1,19 @@
 package com.example.apptemple
 
+import android.app.Dialog
+import android.content.Context
+import android.view.Gravity
+import android.view.WindowManager
+import android.os.Handler
+import android.os.Looper
+import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatDelegate
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Message
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +24,7 @@ import com.example.apptemple.DataClasses.UserData
 import com.example.apptemple.Responses.UserResponse
 import com.example.apptemple.Retrofit.RetrofitClient
 import com.example.apptemple.databinding.ActivityRegisterBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import okhttp3.internal.concurrent.Task
 import retrofit2.Call
 import retrofit2.Callback
@@ -51,15 +61,35 @@ class Register_Activity : AppCompatActivity() {
             val userLogin = binding.registerLoginEdit.text.toString()
             val userPassword = binding.registerPasswordEdit.text.toString()
 
+            val dialog = Dialog(this)
+            val view = layoutInflater.inflate(R.layout.bottomsheet, null)
+            dialog.setContentView(view)
+
+            // Устанавливаем параметры окна
+            val window = dialog.window
+            window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+            window?.setGravity(Gravity.TOP) // Показываем сверху
+
+            // Устанавливаем анимацию для окна
+            window?.attributes?.windowAnimations = R.style.DialogAnimation // Указываем стиль анимации
+
+            dialog.setCancelable(false)
+            dialog.show()
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                dialog.dismiss()
+            }, 3000)
+
+            // Validate fields and proceed
             if (validateFields(userEmail, userLogin, userPassword)) {
                 if (mailCheck(userEmail)) {
                     if (binding.agreeCheckBox.isChecked) {
                         registerUser(userEmail, userLogin, userPassword)
-                        }else {
+                    } else {
                         binding.agreeCheckBox.setTextColor(getColor(R.color.red))
                         showMessage("Необходимо согласиться с политикой конфиденциальности")
                     }
-                }else {
+                } else {
                     showMessage("Неправильная почта")
                 }
             }

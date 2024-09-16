@@ -26,14 +26,15 @@
     </androidx.appcompat.widget.Toolbar>
 
     <Button
-        android:textColor="@color/lightBlack"
-        android:backgroundTint="@color/lightBlue"
-        android:fontFamily="@font/montserrat_regular"
         android:id="@+id/exitButton"
+        android:layout_marginHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Выйти из аккаунта"
+        android:backgroundTint="@color/lightBlue"
+        android:fontFamily="@font/montserrat_regular"
         android:paddingVertical="15dp"
+        android:text="Выйти из аккаунта"
+        android:textColor="@color/lightBlack"
         android:textSize="20dp" />
 
 </LinearLayout>

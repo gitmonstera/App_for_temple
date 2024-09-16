@@ -38,6 +38,7 @@ android {
 }
 
 dependencies {
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
     implementation ("com.google.android.material:material:1.9.0")
     implementation ("androidx.cardview:cardview:1.0.0")
     implementation("io.insert-koin:koin-core:3.5.3")
