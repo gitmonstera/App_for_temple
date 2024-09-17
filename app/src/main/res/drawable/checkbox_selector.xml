@@ -1,0 +1,19 @@
+<!-- res/drawable/custom_checkbox.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Checked state -->
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent"/>
+            <stroke android:width="2dp" android:color="@android:color/black"/> <!-- Черная обводка -->
+            <corners android:radius="2dp"/> <!-- Радиус скругления (по желанию) -->
+        </shape>
+    </item>
+    <!-- Default state -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent"/>
+            <stroke android:width="2dp" android:color="@android:color/black"/> <!-- Черная обводка -->
+            <corners android:radius="2dp"/> <!-- Радиус скругления (по желанию) -->
+        </shape>
+    </item>
+</selector>
