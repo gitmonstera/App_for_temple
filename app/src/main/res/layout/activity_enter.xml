@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    tools:context=".Enter_Activity"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    tools:context=".Enter_Activity"
+    android:orientation="vertical"
+    android:background="@mipmap/back"
     >
 
     <LinearLayout
@@ -67,17 +67,17 @@
             android:text="Запомнить меня" />
 
         <Button
+            android:fontFamily="@font/montserrat_regular"
             android:id="@+id/enterEnterButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="@color/lightBlue"
-            android:fontFamily="@font/montserrat_regular"
             android:paddingHorizontal="35dp"
             android:paddingVertical="15dp"
             android:text="Войти"
-            android:textColor="@color/lightBlack"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
