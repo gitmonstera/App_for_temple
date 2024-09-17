@@ -51,7 +51,6 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("io.ktor:ktor-client-okhttp:1.6.3")
 
-
     //Ретрофит для парсинга API и конвертер для их чтения
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
