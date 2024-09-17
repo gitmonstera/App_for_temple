@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Enter_Activity"
     android:orientation="vertical"
-    android:background="@mipmap/back"
+    android:background="@drawable/gradient_background"
     >
 
     <LinearLayout

@@ -87,12 +87,15 @@ class Enter_Activity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
-        //При нажатии на кнопку "Зарегистрироваться" состояние флажка сохраняется в кэш
-        binding.enterRegisterButton.setOnClickListener {
+        binding.passwordCheckbox.setOnCheckedChangeListener { _, _ ->
             val passChecker = binding.passwordCheckbox.isChecked
             editor.putBoolean("passChecker", passChecker)
             editor.apply()
+        }
 
+
+        //При нажатии на кнопку "Зарегистрироваться" состояние флажка сохраняется в кэш
+        binding.enterRegisterButton.setOnClickListener {
             //Инициализация исполнителя и его запуск(переход на активити регистрации)
             startActivity(Intent(this, Register_Activity::class.java))
         }
