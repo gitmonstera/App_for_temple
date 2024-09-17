@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.os.Message
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
@@ -20,6 +21,7 @@ import kotlinx.coroutines.CoroutineScope
 class Enter_Activity : AppCompatActivity() {
     //Инициализация биндинга и глобальных переменных для более удобной передачи
     private val binding by lazy { ActivityEnterBinding.inflate(layoutInflater) }
+    private lateinit var cusotmNotification: CusotmNotification
     private var userLogin: String? = null
     private var userPassword: String? = null
 
@@ -48,6 +50,8 @@ class Enter_Activity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        cusotmNotification = CusotmNotification(this)
         enterData()
         enterCheck()
         passwordCheck()
@@ -60,7 +64,7 @@ class Enter_Activity : AppCompatActivity() {
                 startActivity(Intent(this, App_Activity::class.java))
             }
             else {
-                Toast.makeText(this, "Введен неверный логин или пароль", Toast.LENGTH_SHORT).show()
+                showNotifications("Введен неверный логин или пароль")
             }
         }
     }
@@ -87,14 +91,21 @@ class Enter_Activity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
-        //При нажатии на кнопку "Зарегистрироваться" состояние флажка сохраняется в кэш
-        binding.enterRegisterButton.setOnClickListener {
+        binding.passwordCheckbox.setOnCheckedChangeListener { _, _ ->
             val passChecker = binding.passwordCheckbox.isChecked
             editor.putBoolean("passChecker", passChecker)
             editor.apply()
+        }
 
+
+        //При нажатии на кнопку "Зарегистрироваться" состояние флажка сохраняется в кэш
+        binding.enterRegisterButton.setOnClickListener {
             //Инициализация исполнителя и его запуск(переход на активити регистрации)
             startActivity(Intent(this, Register_Activity::class.java))
         }
+    }
+
+    private fun showNotifications(message: String) {
+        cusotmNotification.showNotification(message)
     }
 }

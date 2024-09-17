@@ -15,5 +15,4 @@
         android:id="@+id/profileItem"
         android:icon="@mipmap/profile_icon"
         android:title="Профиль" />
-
 </menu>

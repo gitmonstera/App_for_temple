@@ -13,10 +13,13 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Message
+import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.apptemple.APIServices.UserDataInterface
@@ -32,6 +35,7 @@ import retrofit2.Response
 
 class Register_Activity : AppCompatActivity() {
     private val binding by lazy { ActivityRegisterBinding.inflate(layoutInflater) }
+    private lateinit var customNotification: CusotmNotification
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -44,6 +48,7 @@ class Register_Activity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        customNotification = CusotmNotification(this)
         toEnterActivity()
         windowCheck()
     }
@@ -61,25 +66,6 @@ class Register_Activity : AppCompatActivity() {
             val userLogin = binding.registerLoginEdit.text.toString()
             val userPassword = binding.registerPasswordEdit.text.toString()
 
-            val dialog = Dialog(this)
-            val view = layoutInflater.inflate(R.layout.bottomsheet, null)
-            dialog.setContentView(view)
-
-            // Устанавливаем параметры окна
-            val window = dialog.window
-            window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
-            window?.setGravity(Gravity.TOP) // Показываем сверху
-
-            // Устанавливаем анимацию для окна
-            window?.attributes?.windowAnimations = R.style.DialogAnimation // Указываем стиль анимации
-
-            dialog.setCancelable(false)
-            dialog.show()
-
-            Handler(Looper.getMainLooper()).postDelayed({
-                dialog.dismiss()
-            }, 3000)
-
             // Validate fields and proceed
             if (validateFields(userEmail, userLogin, userPassword)) {
                 if (mailCheck(userEmail)) {
@@ -87,10 +73,10 @@ class Register_Activity : AppCompatActivity() {
                         registerUser(userEmail, userLogin, userPassword)
                     } else {
                         binding.agreeCheckBox.setTextColor(getColor(R.color.red))
-                        showMessage("Необходимо согласиться с политикой конфиденциальности")
+                        showNotification("Необходимо согласиться с политикой конфиденциальности")
                     }
                 } else {
-                    showMessage("Неправильная почта")
+                    showNotification("Неправильная почта")
                 }
             }
         }
@@ -98,15 +84,15 @@ class Register_Activity : AppCompatActivity() {
 
     private fun validateFields(email: String, login: String, password: String): Boolean {
         if (email.isEmpty()) {
-            showMessage("Введите почту")
+            showNotification("Введите почту")
             return false
         }
         if (login.isEmpty()) {
-            showMessage("Введите логин")
+            showNotification("Введите логин")
             return false
         }
         if (password.isEmpty()) {
-            showMessage("Введите пароль")
+            showNotification("Введите пароль")
             return false
         }
         return true
@@ -124,15 +110,15 @@ class Register_Activity : AppCompatActivity() {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful && response.body()?.success == true) {
                     cacheSave(login, password, passCheck)
-                    showMessage("Регистрация завершена")
+                    showNotification("Регистрация завершена")
                     startActivity(Intent(this@Register_Activity, Enter_Activity::class.java))
                 }else {
-                    showMessage("Ошибка регистрации: ${response.body()?.message ?: "Неизвестная ошибка"}")
+                    showNotification("Ошибка регистрации: ${response.body()?.message ?: "Неизвестная ошибка"}")
                 }
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                showMessage("Ошибка сети: ${t.message}")
+                showNotification("Ошибка сети: ${t.message}")
             }
         })
     }
@@ -146,14 +132,14 @@ class Register_Activity : AppCompatActivity() {
             editor.putString("password", password)
             editor.apply()
         }else {
-            showMessage("Логин и пароль не сохранены")
+            showNotification("Логин и пароль не сохранены")
         }
     }
 
-    private fun showMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
+    private fun showNotification(message: String) {
+        customNotification.showNotification(message)
 
+    }
     private fun mailCheck(mail:String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches()
     }

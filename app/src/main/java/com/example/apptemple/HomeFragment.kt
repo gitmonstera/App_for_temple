@@ -121,8 +121,6 @@ class HomeFragment : Fragment() {
             if (counter > MIN_COUNTER) {
                 counter--
                 changeAnnounces()
-            } else {
-                Toast.makeText(context, "Достигнут предел слева", Toast.LENGTH_SHORT).show()
             }
         }
         //Функция для считывания свайпа влево
@@ -132,8 +130,6 @@ class HomeFragment : Fragment() {
             if (counter < MAX_COUNTER) {
                 counter++
                 changeAnnounces()
-            } else {
-                Toast.makeText(context, "Достигнут предел справа", Toast.LENGTH_SHORT).show()
             }
         }
     }
