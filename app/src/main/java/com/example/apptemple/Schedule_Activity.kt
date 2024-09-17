@@ -18,5 +18,12 @@ class Schedule_Activity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        goBack()
+    }
+
+    private fun goBack() {
+        binding.backButton.setOnClickListener {
+            finish()
+        }
     }
 }
