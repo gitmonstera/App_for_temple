@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".notification_panel"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="15dp"
+        android:paddingTop="18dp"
+        android:paddingHorizontal="25dp"
+        android:background="@drawable/notification_shape" >
+
+        <TextView
+            android:id="@+id/notificationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Just test notification"
+            android:textColor="@color/black"
+            android:fontFamily="@font/montserrat_regular"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+</LinearLayout>
