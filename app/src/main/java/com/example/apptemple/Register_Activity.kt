@@ -138,6 +138,7 @@ class Register_Activity : AppCompatActivity() {
 
     private fun showNotification(message: String) {
         customNotification.showNotification(message)
+
     }
     private fun mailCheck(mail:String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches()
