@@ -3,6 +3,7 @@ package com.example.apptemple
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,7 @@ class App_Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         enableEdgeToEdge()
         setContentView(binding.root)
 
@@ -43,7 +45,6 @@ class App_Activity : AppCompatActivity() {
         fragmentChanger()
         toSettingsActivity()
         toQuestionActivity()
-        toScheduleActivity()
     }
 
     companion object {
@@ -64,19 +65,31 @@ class App_Activity : AppCompatActivity() {
                 else -> FRAGMENT_DIRECTION_FADE
             }
 
+            // Применяем анимацию в зависимости от направления
             loadFragment(getFragmentById(newFragmentId), direction)
-            binding.frameName.text = when (newFragmentId) {
+
+            // Анимация смены заголовка
+            val newTitle = when (newFragmentId) {
                 R.id.homeItem -> "Главная"
                 R.id.lessonsItem -> "Секции"
-                R.id.profileItem -> "Профиль"
+                R.id.profileItem -> "Расписание"
                 else -> ""
             }
+
+            // Анимация исчезновения текста
+            binding.frameName.animate().alpha(0f).setDuration(200).withEndAction {
+                binding.frameName.text = newTitle
+
+                // Анимация появления текста
+                binding.frameName.animate().alpha(1f).setDuration(200).start()
+            }.start()
 
             // Обновляем текущий фрагмент
             currentFragmentId = newFragmentId
             true
         }
     }
+
 
     // Функция для смены фрагментов
     private fun loadFragment(fragment: Fragment, direction: Int) {
@@ -132,11 +145,7 @@ class App_Activity : AppCompatActivity() {
         }
     }
 
-    private fun toScheduleActivity() {
-        binding.scheduleButton.setOnClickListener {
-            startActivity(Intent(this, Schedule_Activity::class.java))
-        }
-    }
+
 
     // Функция для игнорирования вызова "super"
     @SuppressLint("MissingSuperCall")

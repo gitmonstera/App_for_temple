@@ -18,8 +18,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:fontFamily="@font/montserrat_regular"
             android:id="@+id/frameName"
+            android:fontFamily="@font/montserrat_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Главная"
@@ -28,19 +28,11 @@
 
         <ImageView
             android:id="@+id/settingsButton"
-            android:layout_width="40dp"
+            android:layout_width="45dp"
             android:layout_height="40dp"
             android:layout_gravity="end"
             android:layout_marginEnd="10dp"
             android:src="@drawable/baseline_settings_24" />
-
-        <ImageView
-            android:id="@+id/scheduleButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="15dp"
-            android:src="@drawable/shedule_icon"/>
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -70,20 +62,24 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         style="@style/CustomBottomNavView"
-        android:minHeight="67dp"
-        app:labelVisibilityMode="selected"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/imageView4"
         android:layout_marginBottom="0dp"
         android:background="@drawable/gradient_background_bottom"
-        app:itemIconTint="@drawable/bottom_nav_icon_color"
-        app:itemTextAppearanceActive="@font/montserrat_regular"
-        app:itemTextAppearanceInactive="@font/montserrat_regular"
+        android:paddingVertical="5dp"
+        app:itemTextAppearanceActive="@style/CustomBottomNavItem"
+        app:itemTextAppearanceInactive="@style/CustomBottomNavItem"
         app:itemTextColor="@drawable/bottom_nav_text_color"
-        app:itemBackground="@android:color/transparent"
+        app:labelVisibilityMode="selected"
         app:menu="@menu/bottom_menu" />
 
-
+    <ImageView
+        android:background="@drawable/down_bottomnav"
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp" />
 
 </RelativeLayout>
