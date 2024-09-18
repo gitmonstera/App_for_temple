@@ -25,6 +25,7 @@ class Settings_Activity : AppCompatActivity() {
         }
         goBack()
         goExit()
+        toProfileSettings()
     }
 
     //При нажатии на кнопку "Назад" просто завершаем текущий активити
@@ -40,4 +41,11 @@ class Settings_Activity : AppCompatActivity() {
             startActivity(Intent(this, Enter_Activity::class.java))
         }
     }
+
+    private fun toProfileSettings() {
+        binding.profileSetting.setOnClickListener {
+            startActivity(Intent(this, Schedule_Activity::class.java))
+        }
+    }
+
 }

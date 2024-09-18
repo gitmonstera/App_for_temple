@@ -25,9 +25,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_regular"
-            android:text="Расписание"
+            android:text="Аккаунт"
+            android:textColor="@color/black"
             android:textSize="25sp"
-            android:textColor="@color/black"/>
+            tools:layout_editor_absoluteX="71dp"
+            tools:layout_editor_absoluteY="15dp" />
 
     </androidx.appcompat.widget.Toolbar>
 

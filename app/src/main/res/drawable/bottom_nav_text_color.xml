@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="#ff7140" android:state_checked="true" /> <!-- Цвет активного текста -->
-    <item android:color="#ff9773" /> <!-- Цвет неактивного текста -->
+    <item android:color="#a65363" android:state_checked="true" /> <!-- Цвет активного текста -->
+    <item android:color="#b77b87" /> <!-- Цвет неактивного текста -->
 </selector>
