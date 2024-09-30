@@ -1,6 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/white" />
-    <corners android:radius="25dp" />
-    <stroke android:color="@color/black" android:width="1dp" />
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <!-- Закругленные углы -->
+            <corners android:radius="25dp" />
+
+            <!-- Первый радиальный градиент -->
+            <gradient
+                android:type="radial"
+                android:centerX="0.2"
+                android:gradientRadius="90%p"
+                android:startColor="@color/white"
+                android:endColor="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <!-- Закругленные углы -->
+            <corners android:radius="25dp" />
+
+            <!-- Второй радиальный градиент -->
+            <gradient
+                android:type="radial"
+                android:centerX="0.3"
+                android:gradientRadius="90%p"
+                android:startColor="@color/white"
+                android:endColor="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <!-- Закругленные углы -->
+            <corners android:radius="25dp" />
+
+            <!-- Первый радиальный градиент -->
+            <gradient
+                android:type="radial"
+                android:centerX="0.4"
+                android:gradientRadius="90%p"
+                android:startColor="@color/white"
+                android:endColor="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <!-- Закругленные углы -->
+            <corners android:radius="25dp" />
+
+            <!-- Первый радиальный градиент -->
+            <gradient
+                android:type="radial"
+                android:centerX="0.5"
+                android:gradientRadius="90%p"
+                android:startColor="@color/white"
+                android:endColor="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <!-- Закругленные углы -->
+            <corners android:radius="25dp" />
+
+            <!-- Первый радиальный градиент -->
+            <gradient
+                android:type="radial"
+                android:centerX="0.6"
+                android:gradientRadius="90%p"
+                android:startColor="@color/white"
+                android:endColor="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <!-- Закругленные углы -->
+            <corners android:radius="25dp" />
+
+            <!-- Второй радиальный градиент -->
+            <gradient
+                android:type="radial"
+                android:centerX="0.7"
+                android:gradientRadius="90%p"
+                android:startColor="@color/white"
+                android:endColor="@android:color/transparent" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <!-- Закругленные углы -->
+            <corners android:radius="25dp" />
+
+            <!-- Второй радиальный градиент -->
+            <gradient
+                android:type="radial"
+                android:centerX="0.8"
+                android:gradientRadius="90%p"
+                android:startColor="@color/white"
+                android:endColor="@android:color/transparent" />
+        </shape>
+    </item>
+</layer-list>

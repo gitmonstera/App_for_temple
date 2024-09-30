@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Закругленные углы -->
+    <corners android:radius="25dp" />
+
+    <!-- Плавный радиальный градиент -->
+    <gradient
+        android:type="radial"
+        android:centerX="0.4"
+        android:centerY="0.7"
+        android:gradientRadius="350%p"
+        android:startColor="@color/white"
+        android:endColor="@android:color/transparent" />
+</shape>

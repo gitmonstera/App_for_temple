@@ -90,7 +90,6 @@ class App_Activity : AppCompatActivity() {
         }
     }
 
-
     // Функция для смены фрагментов
     private fun loadFragment(fragment: Fragment, direction: Int) {
         val transaction = supportFragmentManager.beginTransaction()

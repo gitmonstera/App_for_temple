@@ -38,6 +38,7 @@ class Register_Activity : AppCompatActivity() {
     private lateinit var customNotification: CusotmNotification
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         enableEdgeToEdge()
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -66,7 +67,6 @@ class Register_Activity : AppCompatActivity() {
             val userLogin = binding.registerLoginEdit.text.toString()
             val userPassword = binding.registerPasswordEdit.text.toString()
 
-            // Validate fields and proceed
             if (validateFields(userEmail, userLogin, userPassword)) {
                 if (mailCheck(userEmail)) {
                     if (binding.agreeCheckBox.isChecked) {
