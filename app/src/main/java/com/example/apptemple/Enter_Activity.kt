@@ -60,7 +60,7 @@ class Enter_Activity : AppCompatActivity() {
     private fun enterData() {
         //Переменная для ввода и вывода данных из кэша
         val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
-        userLogin = sharedPreferences.getString("login", "")
+        userLogin = sharedPreferences.getString("username", "")
         userPassword = sharedPreferences.getString("password", "")
         val passChecker = sharedPreferences.getBoolean("passChecker", false)
 

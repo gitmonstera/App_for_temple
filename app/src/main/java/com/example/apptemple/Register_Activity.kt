@@ -63,14 +63,16 @@ class Register_Activity : AppCompatActivity() {
 
     private fun windowCheck() {
         binding.registerRegisterButton.setOnClickListener {
+            val userSecondName = binding.userSecondNamelEdit.text.toString()
+            val userName = binding.userNameEdit.text.toString()
             val userEmail = binding.registerMailEdit.text.toString()
             val userLogin = binding.registerLoginEdit.text.toString()
             val userPassword = binding.registerPasswordEdit.text.toString()
 
-            if (validateFields(userEmail, userLogin, userPassword)) {
+            if (validateFields(userSecondName, userName,userEmail, userLogin, userPassword)) {
                 if (mailCheck(userEmail)) {
                     if (binding.agreeCheckBox.isChecked) {
-                        registerUser(userEmail, userLogin, userPassword)
+                        registerUser(userSecondName, userName, userEmail, userLogin, userPassword)
                     } else {
                         binding.agreeCheckBox.setTextColor(getColor(R.color.red))
                         showNotification("Необходимо согласиться с политикой конфиденциальности")
@@ -82,7 +84,7 @@ class Register_Activity : AppCompatActivity() {
         }
     }
 
-    private fun validateFields(email: String, login: String, password: String): Boolean {
+    private fun validateFields(secondName: String ,firstName: String, email: String, login: String, password: String): Boolean {
         if (email.isEmpty()) {
             showNotification("Введите почту")
             return false
@@ -106,22 +108,27 @@ class Register_Activity : AppCompatActivity() {
         return true
     }
 
-    private fun registerUser(email: String, login: String, password: String) {
+    private fun registerUser(secondName: String, firstName: String, email: String, login: String, password: String) {
         val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val passCheck = sharedPreferences.getBoolean("passChecker", false)
 
-        val userData = UserData(email = email, login = login, password = password)
+        val userData = UserData(last_name = secondName, first_name = firstName ,email = email, username = login, password = password)
         val apiService = RetrofitClient.instance.create(UserDataInterface::class.java)
 
         apiService.createUser(userData).enqueue(object : Callback<UserResponse> {
+
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                if (response.isSuccessful && response.body()?.success == true) {
-                    cacheSave(email, login, password, passCheck)
-                    showNotification("Регистрация завершена")
-                    startActivity(Intent(this@Register_Activity, Enter_Activity::class.java))
-                }else {
-                    showNotification("Ошибка регистрации: ${response.body()?.message ?: "Неизвестная ошибка"}")
+                if (response.isSuccessful) {
+                    if (response.code() == 201) {
+                        cacheSave(secondName, firstName, email, login, password, passCheck)
+                        showNotification("Проверьте почту для завершения регистрации")
+                        startActivity(Intent(this@Register_Activity, Enter_Activity::class.java))
+                    } else {
+                        showNotification("Успешный ответ, но код: ${response.code()}")
+                    }
+                } else {
+                    showNotification("Ошибка регистрации, код: ${response.errorBody()?.string() ?: "Неизвестная ошибка"}")
                 }
             }
 
@@ -131,13 +138,15 @@ class Register_Activity : AppCompatActivity() {
         })
     }
 
-    private fun cacheSave(email: String, login: String, password: String, passCheck: Boolean) {
+    private fun cacheSave (secondName: String ,firstName: String,email: String, login: String, password: String, passCheck: Boolean) {
         val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
         if (passCheck) {
+            editor.putString("last_name", secondName)
+            editor.putString("first_name", firstName)
             editor.putString("email", email)
-            editor.putString("login", login)
+            editor.putString("username", login)
             editor.putString("password", password)
             editor.apply()
         }else {
