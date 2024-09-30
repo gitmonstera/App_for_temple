@@ -22,7 +22,7 @@
             android:layout_gravity="center|bottom"
             android:fontFamily="@font/montserrat_regular"
             android:paddingHorizontal="60dp"
-            android:paddingTop="60dp"
+            android:paddingTop="80dp"
             android:text="Регистрация"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -44,11 +44,9 @@
             android:ems="12"
             android:fontFamily="@font/montserrat_regular"
             android:hint="E-Mail"
-            android:padding="15dp"
             android:inputType="textEmailAddress"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:background="@drawable/blur_rectangle"
             android:textColorHint="@color/gray" />
 
         <EditText
@@ -62,8 +60,6 @@
             android:hint="Логин"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:padding="15dp"
-            android:background="@drawable/blur_rectangle"
             android:textColorHint="@color/gray" />
 
         <EditText
@@ -77,8 +73,6 @@
             android:hint="Пароль"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:padding="15dp"
-            android:background="@drawable/blur_rectangle"
             android:textColorHint="@color/gray" />
 
         <CheckBox
@@ -91,7 +85,6 @@
             android:text="Я принимаю условия \n политики конфиденциальности"
             android:textAlignment="center"
             android:textColor="@color/black" />
-
 
         <Button
             android:id="@+id/registerRegisterButton"

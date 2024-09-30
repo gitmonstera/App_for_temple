@@ -1,8 +1,5 @@
 package com.example.apptemple
 
-import android.animation.ObjectAnimator
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.os.Bundle
@@ -27,18 +24,13 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var gestureDetector: GestureDetectorCompat     //Переменная для считывания жестов
     private var counter = 0
-    private var dX = 0f
-    private var originalX = 0f
 
+    //Переменные для считывания работы жестов
     companion object {
         private const val TAG = "HomeFragment"
         private const val COUNTER_KEY = "counter_key"
         private const val MAX_COUNTER = 4
         private const val MIN_COUNTER = 0
-
-        // Константы для обработки свайпов
-        private const val SWIPE_THRESHOLD = 100
-        private const val SWIPE_VELOCITY_THRESHOLD = 100
     }
 
     //Функция с конфигурацией запуска (тут менять нечего)
@@ -55,11 +47,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Сохранение изначального положения жеста
+        //Сохранение изначального положения жеста
         savedInstanceState?.let {
             counter = it.getInt(COUNTER_KEY, 0)
         }
-
         gestureDetector = GestureDetectorCompat(requireContext(), GestureListener())
 
         // Установка OnTouchListener для свайпа
