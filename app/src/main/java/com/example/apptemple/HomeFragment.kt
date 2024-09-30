@@ -102,7 +102,7 @@ class HomeFragment : Fragment() {
         changeAnnounces()
     }
 
-    //Статичные фотографии заменить на фотки с сервака
+    //Статичные фотографии заменить на фотки с сервакаааааааааааааааааааааааа
     private fun changeAnnounces() {
         when(counter) {
             0 -> binding.announceSlider.setImageResource(R.mipmap.justannounce)
