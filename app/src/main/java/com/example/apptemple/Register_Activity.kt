@@ -87,6 +87,14 @@ class Register_Activity : AppCompatActivity() {
             showNotification("Введите почту")
             return false
         }
+        if (email.isEmpty()) {
+            showNotification("Введите фамилию")
+            return false
+        }
+        if (email.isEmpty()) {
+            showNotification("Введите имя")
+            return false
+        }
         if (login.isEmpty()) {
             showNotification("Введите логин")
             return false
@@ -109,7 +117,7 @@ class Register_Activity : AppCompatActivity() {
         apiService.createUser(userData).enqueue(object : Callback<UserResponse> {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful && response.body()?.success == true) {
-                    cacheSave(login, password, passCheck)
+                    cacheSave(email, login, password, passCheck)
                     showNotification("Регистрация завершена")
                     startActivity(Intent(this@Register_Activity, Enter_Activity::class.java))
                 }else {
@@ -123,11 +131,12 @@ class Register_Activity : AppCompatActivity() {
         })
     }
 
-    private fun cacheSave(login: String, password: String, passCheck: Boolean) {
+    private fun cacheSave(email: String, login: String, password: String, passCheck: Boolean) {
         val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
         if (passCheck) {
+            editor.putString("email", email)
             editor.putString("login", login)
             editor.putString("password", password)
             editor.apply()
@@ -138,8 +147,8 @@ class Register_Activity : AppCompatActivity() {
 
     private fun showNotification(message: String) {
         customNotification.showNotification(message)
-
     }
+
     private fun mailCheck(mail:String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches()
     }

@@ -15,18 +15,102 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                        <ImageView
-                            android:id="@+id/announceSlider"
+                        <HorizontalScrollView
                             android:layout_width="match_parent"
-                            android:layout_height="250dp"
-                            android:src="@mipmap/justannounce"
-                            android:scaleType="fitXY"/>
+                            android:layout_height="200dp" >
 
-                        <ImageView
-                            android:id="@+id/announceIndicator"
-                            android:layout_width="match_parent"
-                            android:layout_height="15dp"
-                            android:src="@mipmap/first_slider_indicator"/>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+                                    
+                                    <androidx.cardview.widget.CardView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="1.2in"
+                                        android:layout_marginEnd="10dp">
+
+                                        <ImageView
+                                            android:layout_width="380dp"
+                                            android:layout_height="match_parent"
+                                            android:scaleType="fitXY"
+                                            android:src="@mipmap/justannounce" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center|bottom"
+                                            android:text="Текст первого анонса"
+                                            android:textColor="@color/white"
+                                            android:textSize="20dp"/>
+
+                                    </androidx.cardview.widget.CardView>
+
+                                    <androidx.cardview.widget.CardView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="1.2in"
+                                        android:layout_marginEnd="10dp">
+
+                                        <ImageView
+                                            android:layout_width="415dp"
+                                            android:layout_height="match_parent"
+                                            android:src="@mipmap/justannounce2"
+                                            android:scaleType="fitXY"/>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center|bottom"
+                                            android:text="Текст второго анонса"
+                                            android:textColor="@color/white"
+                                            android:textSize="20dp"/>
+
+                                    </androidx.cardview.widget.CardView>
+
+                                    <androidx.cardview.widget.CardView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="1.2in"
+                                        android:layout_marginEnd="10dp">
+
+                                        <ImageView
+                                            android:layout_width="415dp"
+                                            android:layout_height="match_parent"
+                                            android:src="@mipmap/justannounce3"
+                                            android:scaleType="fitXY"/>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center|bottom"
+                                            android:text="Текст третьего анонса"
+                                            android:textColor="@color/white"
+                                            android:textSize="20dp"/>
+
+                                    </androidx.cardview.widget.CardView>
+
+                                    <androidx.cardview.widget.CardView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="1.2in"
+                                        android:layout_marginEnd="10dp">
+
+                                        <ImageView
+                                            android:layout_width="415dp"
+                                            android:layout_height="match_parent"
+                                            android:src="@mipmap/justannounce4"
+                                            android:scaleType="fitXY"/>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center|bottom"
+                                            android:text="Текст четевртого анонса"
+                                            android:textColor="@color/white"
+                                            android:textSize="20dp"/>
+
+                                    </androidx.cardview.widget.CardView>
+
+                                </LinearLayout>
+
+                        </HorizontalScrollView>
 
                         <LinearLayout
                             android:layout_width="match_parent"
