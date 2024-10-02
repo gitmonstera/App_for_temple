@@ -28,6 +28,7 @@ import com.example.apptemple.Responses.UserResponse
 import com.example.apptemple.Retrofit.RetrofitClient
 import com.example.apptemple.databinding.ActivityRegisterBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.coroutines.delay
 import okhttp3.internal.concurrent.Task
 import retrofit2.Call
 import retrofit2.Callback
@@ -123,12 +124,13 @@ class Register_Activity : AppCompatActivity() {
                     if (response.code() == 201) {
                         cacheSave(secondName, firstName, email, login, password, passCheck)
                         showNotification("Проверьте почту для завершения регистрации")
+                        Thread.sleep(3000)
                         startActivity(Intent(this@Register_Activity, Enter_Activity::class.java))
                     } else {
                         showNotification("Успешный ответ, но код: ${response.code()}")
                     }
                 } else {
-                    showNotification("Ошибка регистрации, код: ${response.errorBody()?.string() ?: "Неизвестная ошибка"}")
+                    showNotification("Ошибка регистрации, код: ${response.errorBody()?.string()}")
                 }
             }
 
