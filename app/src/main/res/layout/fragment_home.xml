@@ -4,185 +4,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment"
+    android:orientation="vertical"
     android:background="@color/white">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="200dp"
+                    android:orientation="horizontal"
+                    android:background="@android:color/transparent">
 
-                        <HorizontalScrollView
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp" >
+                        <ImageView
+                             android:id="@+id/backArrow"
+                             android:layout_width="30dp"
+                             android:layout_height="match_parent"
+                             android:src="@drawable/baseline_arrow_back_24" />
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:orientation="horizontal">
-                                    
-                                    <androidx.cardview.widget.CardView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="1.2in"
-                                        android:layout_marginEnd="10dp">
-
-                                        <ImageView
-                                            android:layout_width="380dp"
-                                            android:layout_height="match_parent"
-                                            android:scaleType="fitXY"
-                                            android:src="@mipmap/justannounce" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center|bottom"
-                                            android:text="Текст первого анонса"
-                                            android:textColor="@color/white"
-                                            android:textSize="20dp"/>
-
-                                    </androidx.cardview.widget.CardView>
-
-                                    <androidx.cardview.widget.CardView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="1.2in"
-                                        android:layout_marginEnd="10dp">
-
-                                        <ImageView
-                                            android:layout_width="415dp"
-                                            android:layout_height="match_parent"
-                                            android:src="@mipmap/justannounce2"
-                                            android:scaleType="fitXY"/>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center|bottom"
-                                            android:text="Текст второго анонса"
-                                            android:textColor="@color/white"
-                                            android:textSize="20dp"/>
-
-                                    </androidx.cardview.widget.CardView>
-
-                                    <androidx.cardview.widget.CardView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="1.2in"
-                                        android:layout_marginEnd="10dp">
-
-                                        <ImageView
-                                            android:layout_width="415dp"
-                                            android:layout_height="match_parent"
-                                            android:src="@mipmap/justannounce3"
-                                            android:scaleType="fitXY"/>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center|bottom"
-                                            android:text="Текст третьего анонса"
-                                            android:textColor="@color/white"
-                                            android:textSize="20dp"/>
-
-                                    </androidx.cardview.widget.CardView>
-
-                                    <androidx.cardview.widget.CardView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="1.2in"
-                                        android:layout_marginEnd="10dp">
-
-                                        <ImageView
-                                            android:layout_width="415dp"
-                                            android:layout_height="match_parent"
-                                            android:src="@mipmap/justannounce4"
-                                            android:scaleType="fitXY"/>
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center|bottom"
-                                            android:text="Текст четевртого анонса"
-                                            android:textColor="@color/white"
-                                            android:textSize="20dp"/>
-
-                                    </androidx.cardview.widget.CardView>
-
-                                </LinearLayout>
-
-                        </HorizontalScrollView>
-
-                        <LinearLayout
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/announceSlider"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:layout_marginTop="50dp">
+                            android:layout_marginStart="0dp"
+                            android:layout_toStartOf="@+id/forwardArrow"
+                            android:layout_toEndOf="@+id/backArrow"
+                            android:background="@android:color/transparent"
+                            android:orientation="horizontal">
 
+                        </androidx.recyclerview.widget.RecyclerView>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="First Post Test"
-                                    android:layout_gravity="center"
-                                    android:textSize="35dp"/>
+                        <ImageView
+                            android:id="@+id/forwardArrow"
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="0dp"
+                            android:rotation="180"
+                            android:src="@drawable/baseline_arrow_back_24" />
 
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="170dp"
-                                    android:src="@mipmap/justannounce5"/>
+                        </RelativeLayout>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Second Post Test"
-                                    android:layout_gravity="center"
-                                    android:textSize="35dp"/>
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="170dp"
-                                    android:src="@mipmap/justannounce4"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Third Post Test"
-                                    android:layout_gravity="center"
-                                    android:textSize="35dp"/>
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="170dp"
-                                    android:src="@mipmap/justannounce3"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Fourth Post Test"
-                                    android:layout_gravity="center"
-                                    android:textSize="35dp"/>
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="170dp"
-                                    android:src="@mipmap/justannounce2"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Fifth Post Test"
-                                    android:layout_gravity="center"
-                                    android:textSize="35dp"/>
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="170dp"
-                                    android:src="@mipmap/justannounce"/>
-
-                        </LinearLayout>
-
-                </LinearLayout>
-
-        </ScrollView>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/newsSlider"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"/>
 
 </LinearLayout>

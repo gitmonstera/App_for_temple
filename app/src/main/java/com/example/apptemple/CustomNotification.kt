@@ -4,14 +4,11 @@ import android.app.Dialog
 import android.content.Context
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.View
 import android.view.WindowManager
-import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import com.example.apptemple.R
 
-class CusotmNotification(private val context: Context) {
+class CustomNotification(private val context: Context) {
     private var dialog: Dialog? = null
 
     // Метод для показа плашки с текстом

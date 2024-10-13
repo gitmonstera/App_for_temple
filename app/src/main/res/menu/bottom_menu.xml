@@ -12,7 +12,7 @@
         android:title="Кружки" />
 
     <item
-        android:id="@+id/profileItem"
+        android:id="@+id/scheduleItem"
         android:icon="@drawable/shedule_icon"
         android:title="Расписание" />
 </menu>

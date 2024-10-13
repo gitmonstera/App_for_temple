@@ -9,19 +9,13 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.apptemple.databinding.ActivityQuestionBinding
 
 class Question_Activity : AppCompatActivity() {
-    private val binding by lazy { ActivityQuestionBinding.inflate(layoutInflater) }
+    private lateinit var binding : ActivityQuestionBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        binding = ActivityQuestionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
         goBack()
     }
 

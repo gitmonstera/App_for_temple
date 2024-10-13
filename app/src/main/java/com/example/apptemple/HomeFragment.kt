@@ -1,37 +1,27 @@
 package com.example.apptemple
 
-import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
-import android.view.GestureDetector
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
-import android.view.animation.TranslateAnimation
 import android.widget.ImageView
-import android.widget.Toast
-import androidx.core.view.GestureDetectorCompat
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.core.view.marginStart
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import com.example.apptemple.DataClasses.AnnounceData
+import com.example.apptemple.DataClasses.NewsData
 import com.example.apptemple.databinding.FragmentHomeBinding
-import com.google.android.material.textfield.TextInputLayout.LengthCounter
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var gestureDetector: GestureDetectorCompat     //Переменная для считывания жестов
-    private var counter = 0
-
-    //Переменные для считывания работы жестов
-    companion object {
-        private const val TAG = "HomeFragment"
-        private const val COUNTER_KEY = "counter_key"
-        private const val MAX_COUNTER = 4
-        private const val MIN_COUNTER = 0
-    }
+    private var currentPosition = 0
 
     //Функция с конфигурацией запуска (тут менять нечего)
     override fun onCreateView(
@@ -39,154 +29,115 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        binding = FragmentHomeBinding.inflate(layoutInflater)
         return binding.root
     }
 
-    @SuppressLint("ClickableViewAccessibility")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view : View, savedInstanceState : Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        announceSliderAdapter()
 
-        //Сохранение изначального положения жеста
-        savedInstanceState?.let {
-            counter = it.getInt(COUNTER_KEY, 0)
-        }
-        gestureDetector = GestureDetectorCompat(requireContext(), GestureListener())
-
-        // Установка OnTouchListener для свайпа
-        binding.announceSlider.setOnTouchListener { view, event ->
-            gestureDetector.onTouchEvent(event)
-
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    // Сохраняем исходное положение картинки
-                    originalX = view.x
-
-                    // Рассчитываем смещение точки касания относительно левого края изображения
-                    dX = event.rawX - view.x
-
-                    // Блокируем перехват событий для других элементов
-                    view.parent.requestDisallowInterceptTouchEvent(true)
-                }
-                MotionEvent.ACTION_MOVE -> {
-                    // Перемещаем изображение за пальцем с учетом смещения
-                    view.x = event.rawX - dX
-                }
-                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                    // Разрешаем другие действия после отпускания
-                    view.parent.requestDisallowInterceptTouchEvent(false)
-
-                    // Проверяем, был ли произведен свайп или нужно вернуть картинку на место
-                    val isSwipe = Math.abs(view.x - originalX) > SWIPE_THRESHOLD
-                    if (!isSwipe) {
-                        // Возвращаем картинку на исходное место с анимацией
-                        ObjectAnimator.ofFloat(view, "x", originalX).apply {
-                            duration = 300
-                            start()
-                        }
-                    }
-                }
-            }
-            true
-        }
-
-        changeAnnounces()
+        buttonsSlide()
+        newsUpdater()
     }
 
-    //Статичные фотографии заменить на фотки с сервакаааааааааааааааааааааааа
-    private fun changeAnnounces() {
-        when(counter) {
-            0 -> binding.announceSlider.setImageResource(R.mipmap.justannounce)
-            1 -> binding.announceSlider.setImageResource(R.mipmap.justannounce2)
-            2 -> binding.announceSlider.setImageResource(R.mipmap.justannounce3)
-            3 -> binding.announceSlider.setImageResource(R.mipmap.justannounce4)
-            4 -> binding.announceSlider.setImageResource(R.mipmap.justannounce5)
+    private fun announceSliderAdapter() {
+        val announceRecyclerView = binding.announceSlider
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        announceRecyclerView.layoutManager = layoutManager
+
+        val announceItems = listOf(
+            AnnounceData("Первый анонс", R.mipmap.justannounce),
+            AnnounceData("Второй анонс", R.mipmap.justannounce2),
+            AnnounceData("Третий анонс", R.mipmap.justannounce3),
+            AnnounceData("Четвертый анонс", R.mipmap.justannounce4),
+            AnnounceData("Пятый анонс", R.mipmap.justannounce5)
+        )
+
+        val adapter = AnnounceAdapter(announceItems)
+        announceRecyclerView.adapter = adapter
+
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(announceRecyclerView)
+    }
+
+    private fun buttonsSlide() {
+        binding.forwardArrow.setOnClickListener {
+            val itemCount = binding.announceSlider.adapter?.itemCount ?: 0
+            if (currentPosition < itemCount - 1) {
+                currentPosition++
+                binding.announceSlider.smoothScrollToPosition(currentPosition)
+            }
+        }
+
+        binding.backArrow.setOnClickListener {
+            if (currentPosition > 0) {
+                currentPosition--
+                binding.announceSlider.smoothScrollToPosition(currentPosition)
+            }
         }
     }
 
+    private fun newsUpdater() {
+        val newsRecyclerView = binding.newsSlider
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        newsRecyclerView.layoutManager = layoutManager
 
-    //Функция для считывания жестов и их длины 卐
-    private inner class GestureListener : GestureDetector.SimpleOnGestureListener() {
-        private val SWIPE_THRESHOLD = 100
-        private val SWIPE_VELOCITY_THRESHOLD = 100
+        val newItems = listOf(
+            NewsData("Первый пост", "Описание первого поста", R.mipmap.justannounce),
+            NewsData("Второй пост", "Описание второго поста", R.mipmap.justannounce2),
+            NewsData("Третий пост", "Описание третьего поста", R.mipmap.justannounce3),
+            NewsData("Четвертый пост", "Описание четвертого поста", R.mipmap.justannounce4),
+            NewsData("Пятый пост", "Описание пятого поста", R.mipmap.justannounce5)
 
-        override fun onFling(
-            e1: MotionEvent?,
-            e2: MotionEvent,
-            velocityX: Float,
-            velocityY: Float
-        ): Boolean {
-            if (e1 == null || e2 == null) return false
+        )
+        val adapter = NewsAdapter(newItems)
+        newsRecyclerView.adapter = adapter
 
-            val diffX = e2.x - e1.x
-            val diffY = e2.y - e1.y
+        newsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView : RecyclerView, dx : Int, dy : Int) {
+                super.onScrolled(recyclerView, dx, dy)
 
-            return if (Math.abs(diffX) > Math.abs(diffY)) {
-                if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                    if (diffX > 0) {
-                        onSwipeRight()
-                    } else {
-                        onSwipeLeft()
-                    }
-                    true
-                } else {
-                    false
+                if (dy > 0) {
+                    binding.announceSlider.animate()
+                        .translationY(-binding.announceSlider.height.toFloat())
+                        .alpha(0f)
+                        .setDuration(200)
+                        .withEndAction { binding.announceSlider.visibility = View.GONE }
+                        .start()
+
+                    binding.backArrow.animate()
+                        .translationY(-binding.backArrow.height.toFloat())
+                        .alpha(0f)
+                        .setDuration(300)
+                        .start()
+
+                    binding.forwardArrow.animate()
+                        .translationY(-binding.forwardArrow.height.toFloat())
+                        .alpha(0f)
+                        .setDuration(300)
+                        .start()
+                }else if (dy < 0) {
+                    binding.announceSlider.animate()
+                        .translationY(0f)
+                        .alpha(1f)
+                        .setDuration(200)
+                        .withStartAction { binding.announceSlider.visibility = View.VISIBLE }
+                        .start()
+
+                    binding.backArrow.animate()
+                        .translationY(0f)
+                        .alpha(1f)
+                        .setDuration(300)
+                        .start()
+
+                    binding.forwardArrow.animate()
+                        .translationY(0f)
+                        .alpha(1f)
+                        .setDuration(300)
+                        .start()
                 }
-            } else {
-                false
             }
-        }
-
-        // Обработка свайпа вправо
-        private fun onSwipeRight() {
-            Log.d(TAG, "Свайп вправо обнаружен")
-            if (counter > MIN_COUNTER) {
-                counter--
-                animateSlideTransition(isLeft = false)
-            }
-        }
-
-        // Обработка свайпа влево
-        private fun onSwipeLeft() {
-            Log.d(TAG, "Свайп влево обнаружен")
-            if (counter < MAX_COUNTER) {
-                counter++
-                animateSlideTransition(isLeft = true)
-            }
-        }
-
-        // Анимация слистывания (свайпа)
-        private fun animateSlideTransition(isLeft: Boolean) {
-            // Анимация исчезновения изображения
-            val slideOutAnimation = if (isLeft) {
-                ObjectAnimator.ofFloat(binding.announceSlider, "translationX", 0f, -binding.root.width.toFloat())
-            } else {
-                ObjectAnimator.ofFloat(binding.announceSlider, "translationX", 0f, binding.root.width.toFloat())
-            }
-            slideOutAnimation.duration = 300
-
-            slideOutAnimation.addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    changeAnnounces() // Меняем изображение после завершения анимации
-
-                    // Анимация появления нового изображения
-                    val slideInAnimation = if (isLeft) {
-                        ObjectAnimator.ofFloat(binding.announceSlider, "translationX", binding.root.width.toFloat(), 0f)
-                    } else {
-                        ObjectAnimator.ofFloat(binding.announceSlider, "translationX", -binding.root.width.toFloat(), 0f)
-                    }
-                    slideInAnimation.duration = 300
-                    slideInAnimation.start()
-                }
-            })
-
-            slideOutAnimation.start()
-        }
-    }
-
-    //Функция для сохранения текущего состояния
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putInt(COUNTER_KEY, counter)
+        })
     }
 }

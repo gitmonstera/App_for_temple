@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@android:color/transparent">
+
+        <ImageView
+            android:id="@+id/announceImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/justannounce"
+            android:background="@android:color/transparent"/>
+
+        <TextView
+            android:id="@+id/announceTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp"
+            android:background="#A9000000"
+            android:text="Это тестовый текст"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+</RelativeLayout>
