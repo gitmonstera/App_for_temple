@@ -1,56 +1,34 @@
 package com.example.apptemple
 
-import android.app.Dialog
-import android.content.Context
-import android.view.Gravity
 import android.view.WindowManager
-import android.os.Handler
-import android.os.Looper
-import android.view.View
-import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatDelegate
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.Message
-import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.apptemple.APIServices.UserDataInterface
 import com.example.apptemple.DataClasses.UserData
 import com.example.apptemple.Responses.UserResponse
 import com.example.apptemple.Retrofit.RetrofitClient
+import com.example.apptemple.databinding.ActivityQuestionBinding
 import com.example.apptemple.databinding.ActivityRegisterBinding
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.coroutines.delay
-import okhttp3.internal.concurrent.Task
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class Register_Activity : AppCompatActivity() {
-    private val binding by lazy { ActivityRegisterBinding.inflate(layoutInflater) }
-    private lateinit var customNotification: CusotmNotification
+    private lateinit var binding : ActivityRegisterBinding
+    private lateinit var customNotification: CustomNotification
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        enableEdgeToEdge()
-
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-        customNotification = CusotmNotification(this)
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        customNotification = CustomNotification(this)
         toEnterActivity()
         windowCheck()
     }

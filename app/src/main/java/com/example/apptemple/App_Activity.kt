@@ -14,7 +14,7 @@ import com.example.apptemple.databinding.ActivityAppBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class App_Activity : AppCompatActivity() {
-    private val binding by lazy { ActivityAppBinding.inflate(layoutInflater) }
+    private lateinit var binding : ActivityAppBinding
     private var pressedTime: Long = 0
     private lateinit var toast: Toast
 
@@ -24,7 +24,7 @@ class App_Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        enableEdgeToEdge()
+        binding = ActivityAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Устанавливаем начальный фрагмент, если сохраненного состояния нет
@@ -60,8 +60,8 @@ class App_Activity : AppCompatActivity() {
             val direction = when {
                 currentFragmentId == R.id.homeItem && newFragmentId == R.id.lessonsItem -> FRAGMENT_DIRECTION_RIGHT
                 currentFragmentId == R.id.lessonsItem && newFragmentId == R.id.homeItem -> FRAGMENT_DIRECTION_LEFT
-                currentFragmentId == R.id.profileItem && newFragmentId == R.id.lessonsItem -> FRAGMENT_DIRECTION_LEFT
-                currentFragmentId == R.id.lessonsItem && newFragmentId == R.id.profileItem -> FRAGMENT_DIRECTION_RIGHT
+                currentFragmentId == R.id.scheduleItem && newFragmentId == R.id.lessonsItem -> FRAGMENT_DIRECTION_LEFT
+                currentFragmentId == R.id.lessonsItem && newFragmentId == R.id.scheduleItem -> FRAGMENT_DIRECTION_RIGHT
                 else -> FRAGMENT_DIRECTION_FADE
             }
 
@@ -72,7 +72,7 @@ class App_Activity : AppCompatActivity() {
             val newTitle = when (newFragmentId) {
                 R.id.homeItem -> "Главная"
                 R.id.lessonsItem -> "Секции"
-                R.id.profileItem -> "Расписание"
+                R.id.scheduleItem -> "Расписание"
                 else -> ""
             }
 
@@ -125,7 +125,7 @@ class App_Activity : AppCompatActivity() {
         return when (fragmentId) {
             R.id.homeItem -> HomeFragment()
             R.id.lessonsItem -> LessonsFragment()
-            R.id.profileItem -> ProfileFragment()
+            R.id.scheduleItem -> ScheduleFragment()
             else -> HomeFragment()
         }
     }

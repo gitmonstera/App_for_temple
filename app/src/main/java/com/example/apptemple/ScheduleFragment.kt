@@ -6,10 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.apptemple.databinding.FragmentProfileBinding
+import com.example.apptemple.databinding.FragmentScheduleBinding
 
-class ProfileFragment : Fragment() {
-    private lateinit var binding: FragmentProfileBinding
+class ScheduleFragment : Fragment() {
+    private lateinit var binding: FragmentScheduleBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -18,7 +18,7 @@ class ProfileFragment : Fragment() {
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
+        binding = FragmentScheduleBinding.inflate(layoutInflater)
         return binding.root
     }
 }
