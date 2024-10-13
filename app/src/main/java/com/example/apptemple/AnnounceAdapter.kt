@@ -11,8 +11,8 @@ import com.example.apptemple.DataClasses.AnnounceData
 class AnnounceAdapter(private val announceItems: List<AnnounceData>): RecyclerView.Adapter<AnnounceAdapter.AnnounceViewHolder>() {
 
     class AnnounceViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.announceImage)
-        val titleView: TextView = itemView.findViewById(R.id.announceTitle)
+        val announceImageView: ImageView = itemView.findViewById(R.id.announceImage)
+        val announceTitleView: TextView = itemView.findViewById(R.id.announceTitle)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnnounceViewHolder {
@@ -22,8 +22,8 @@ class AnnounceAdapter(private val announceItems: List<AnnounceData>): RecyclerVi
 
     override fun onBindViewHolder(holder: AnnounceViewHolder, position: Int) {
         val announceItem = announceItems[position]
-        holder.imageView.setImageResource(announceItem.announceImageData)
-        holder.titleView.text = announceItem.announceTitleData
+        holder.announceImageView.setImageResource(announceItem.announceImageData)
+        holder.announceTitleView.text = announceItem.announceTitleData
     }
 
     override fun getItemCount(): Int = announceItems.size

@@ -8,16 +8,12 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.apptemple.databinding.ActivityScheduleBinding
 
 class Schedule_Activity : AppCompatActivity() {
-    private val binding by lazy { ActivityScheduleBinding.inflate(layoutInflater) }
+    private lateinit var binding: ActivityScheduleBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        binding = ActivityScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
         goBack()
     }
 

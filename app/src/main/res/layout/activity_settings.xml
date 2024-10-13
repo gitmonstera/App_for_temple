@@ -48,9 +48,9 @@
 
     <Button
         android:id="@+id/exitButton"
-        android:layout_marginHorizontal="80dp"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:layout_marginHorizontal="0dp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/montserrat_regular"
         android:text="Выйти из аккаунта"

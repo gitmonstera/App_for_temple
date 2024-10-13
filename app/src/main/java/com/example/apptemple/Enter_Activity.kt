@@ -2,44 +2,30 @@ package com.example.apptemple
 
 import androidx.appcompat.app.AppCompatDelegate
 import android.content.Intent
-import android.content.SharedPreferences
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.os.Message
-import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.apptemple.databinding.ActivityEnterBinding
-import kotlinx.coroutines.CoroutineScope
 
 class Enter_Activity : AppCompatActivity() {
     //Инициализация биндинга и глобальных переменных для более удобной передачи
-    private val binding by lazy { ActivityEnterBinding.inflate(layoutInflater) }
-    private lateinit var cusotmNotification: CusotmNotification
+    private lateinit var binding : ActivityEnterBinding
+    private lateinit var customNotification: CustomNotification
     private var userLogin: String? = null
     private var userPassword: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        enableEdgeToEdge()
+        binding = ActivityEnterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-        cusotmNotification = CusotmNotification(this)
+        customNotification = CustomNotification(this)
         enterData()
         enterCheck()
         passwordCheck()
@@ -94,6 +80,6 @@ class Enter_Activity : AppCompatActivity() {
     }
 
     private fun showNotifications(message: String) {
-        cusotmNotification.showNotification(message)
+        customNotification.showNotification(message)
     }
 }

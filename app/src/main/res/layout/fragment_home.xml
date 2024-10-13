@@ -4,96 +4,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment"
+    android:orientation="vertical"
     android:background="@color/white">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="200dp"
+                    android:orientation="horizontal"
+                    android:background="@android:color/transparent">
+
+                        <ImageView
+                             android:id="@+id/backArrow"
+                             android:layout_width="30dp"
+                             android:layout_height="match_parent"
+                             android:src="@drawable/baseline_arrow_back_24" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/announceSlider"
                             android:layout_width="match_parent"
-                            android:layout_height="200dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="0dp"
+                            android:layout_toStartOf="@+id/forwardArrow"
+                            android:layout_toEndOf="@+id/backArrow"
+                            android:background="@android:color/transparent"
                             android:orientation="horizontal">
 
                         </androidx.recyclerview.widget.RecyclerView>
 
-                        <LinearLayout
+                        <ImageView
+                            android:id="@+id/forwardArrow"
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="0dp"
+                            android:rotation="180"
+                            android:src="@drawable/baseline_arrow_back_24" />
+
+                        </RelativeLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/newsSlider"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:layout_marginTop="50dp">
-
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="First Post Test"
-                                    android:layout_gravity="center"
-                                    android:textSize="35dp"/>
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="170dp"
-                                    android:src="@mipmap/justannounce5"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Second Post Test"
-                                    android:layout_gravity="center"
-                                    android:textSize="35dp"/>
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="170dp"
-                                    android:src="@mipmap/justannounce4"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Third Post Test"
-                                    android:layout_gravity="center"
-                                    android:textSize="35dp"/>
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="170dp"
-                                    android:src="@mipmap/justannounce3"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Fourth Post Test"
-                                    android:layout_gravity="center"
-                                    android:textSize="35dp"/>
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="170dp"
-                                    android:src="@mipmap/justannounce2"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Fifth Post Test"
-                                    android:layout_gravity="center"
-                                    android:textSize="35dp"/>
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="170dp"
-                                    android:src="@mipmap/justannounce"/>
-
-                        </LinearLayout>
-
-                </LinearLayout>
-
-        </ScrollView>
+                            android:orientation="vertical"/>
 
 </LinearLayout>
