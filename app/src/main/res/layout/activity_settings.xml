@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Settings_Activity"
+    tools:context=".SettingsActivity"
     android:background="@color/white">
 
     <androidx.appcompat.widget.Toolbar
@@ -34,27 +34,71 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <Button
+    <LinearLayout
         android:id="@+id/profileSetting"
-        android:textAlignment="viewStart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:fontFamily="@font/montserrat_regular"
-        android:text="Аккаунт"
-        android:drawableLeft="@drawable/account_icon"
-        android:textColor="@color/black"
-        android:textSize="25dp" />
+        android:orientation="horizontal"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="15dp">
 
-    <Button
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/account_icon" />
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Аккаунт"
+            android:textSize="25dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textAlignment="textStart"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/telegramButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="15dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="15dp"
+            android:src="@mipmap/telegram_lcon" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Чаты секций"
+            android:textSize="25dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textAlignment="textStart"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/exitButton"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginHorizontal="0dp"
-        android:backgroundTint="@color/white"
-        android:fontFamily="@font/montserrat_regular"
-        android:text="Выйти из аккаунта"
-        android:textColor="#FF2C2C"
-        android:textSize="19dp" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Выйти из аккаунта"
+            android:textSize="25dp"
+            android:textColor="@color/red"
+            android:fontFamily="@font/montserrat_regular"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
 
 </LinearLayout>

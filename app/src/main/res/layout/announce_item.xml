@@ -21,6 +21,8 @@
             android:background="#A9000000"
             android:text="Это тестовый текст"
             android:textColor="@color/white"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:maxLines="1"
+            android:ellipsize="end"/>
 
 </RelativeLayout>
