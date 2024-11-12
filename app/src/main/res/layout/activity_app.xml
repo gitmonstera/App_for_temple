@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".App_Activity"
+    tools:context=".AppActivity"
     android:background="@color/white"
     >
 
@@ -63,20 +63,19 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         style="@style/CustomBottomNavView"
-        android:minHeight="67dp"
-        app:labelVisibilityMode="selected"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="0dp"
         android:background="@drawable/gradient_background_bottom"
+        android:minHeight="67dp"
+        app:itemBackground="@android:color/transparent"
         app:itemIconTint="@drawable/bottom_nav_icon_color"
         app:itemTextAppearanceActive="@font/montserrat_regular"
         app:itemTextAppearanceInactive="@font/montserrat_regular"
         app:itemTextColor="@drawable/bottom_nav_text_color"
-        app:itemBackground="@android:color/transparent"
+        app:labelVisibilityMode="selected"
         app:menu="@menu/bottom_menu" />
-
 
 
 </RelativeLayout>

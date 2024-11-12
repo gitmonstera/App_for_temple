@@ -38,20 +38,24 @@ android {
 }
 
 dependencies {
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
-    implementation ("com.google.android.material:material:1.9.0")
-    implementation ("androidx.cardview:cardview:1.0.0")
-    implementation("io.insert-koin:koin-core:3.5.3")
-    implementation("io.insert-koin:koin-android:3.5.3")
+//    implementation (libs.material.v190)
+//    implementation (libs.androidx.cardview)
+//    implementation ("org.jsoup:jsoup:1.18.1")
 
-    kapt("androidx.room:room-compiler:2.6.1")
-    implementation ("androidx.room:room-ktx:2.6.1")
-    implementation("androidx.room:room-runtime:2.6.1")
+    implementation (libs.kotlinx.coroutines.android)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
-    implementation("io.ktor:ktor-client-okhttp:1.6.3")
+    kapt(libs.androidx.room.compiler)
+    implementation (libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime)
 
-    //Ретрофит для парсинга API и конвертер для их чтения
+    implementation(libs.kotlinx.serialization.json)
+    implementation (libs.okhttp)
+    implementation (libs.logging.interceptor)
+    implementation(libs.glide)
+
+
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 

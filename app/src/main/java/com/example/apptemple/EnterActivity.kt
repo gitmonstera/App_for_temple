@@ -4,13 +4,10 @@ import androidx.appcompat.app.AppCompatDelegate
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.apptemple.databinding.ActivityEnterBinding
 
-class Enter_Activity : AppCompatActivity() {
+class EnterActivity : AppCompatActivity() {
     //Инициализация биндинга и глобальных переменных для более удобной передачи
     private lateinit var binding : ActivityEnterBinding
     private lateinit var customNotification: CustomNotification
@@ -35,7 +32,7 @@ class Enter_Activity : AppCompatActivity() {
         //При нажатии на кнопку данные логина и пароля проверяются с данными из кэша и либо осуществляется вход, либо выводится сообщение об ошибке
         binding.enterEnterButton.setOnClickListener {
             if (binding.enterLoginEdit.text.toString() == userLogin && binding.enterPasswordEdit.text.toString() == userPassword) {
-                startActivity(Intent(this, App_Activity::class.java))
+                startActivity(Intent(this, AppActivity::class.java))
             }
             else {
                 showNotifications("Введен неверный логин или пароль")
@@ -75,7 +72,7 @@ class Enter_Activity : AppCompatActivity() {
         //При нажатии на кнопку "Зарегистрироваться" состояние флажка сохраняется в кэш
         binding.enterRegisterButton.setOnClickListener {
             //Инициализация исполнителя и его запуск(переход на активити регистрации)
-            startActivity(Intent(this, Register_Activity::class.java))
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 

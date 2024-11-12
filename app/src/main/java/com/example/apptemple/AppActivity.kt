@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -13,7 +12,7 @@ import androidx.fragment.app.Fragment
 import com.example.apptemple.databinding.ActivityAppBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class App_Activity : AppCompatActivity() {
+class AppActivity : AppCompatActivity() {
     private lateinit var binding : ActivityAppBinding
     private var pressedTime: Long = 0
     private lateinit var toast: Toast
@@ -68,7 +67,7 @@ class App_Activity : AppCompatActivity() {
             // Применяем анимацию в зависимости от направления
             loadFragment(getFragmentById(newFragmentId), direction)
 
-            // Анимация смены заголовка
+            // Смена заголовка при переходе
             val newTitle = when (newFragmentId) {
                 R.id.homeItem -> "Главная"
                 R.id.lessonsItem -> "Секции"
@@ -133,14 +132,14 @@ class App_Activity : AppCompatActivity() {
     // При нажатии на кнопку "Настройки" инициализируется исполнитель и переключает на соответствующий активити
     private fun toSettingsActivity() {
         binding.settingsButton.setOnClickListener {
-            startActivity(Intent(this, Settings_Activity::class.java))
+            startActivity(Intent(this, SettingsActivity::class.java))
         }
     }
 
     // При нажатии на кнопку осуществляется переход на активити "Вопрос-ответ"
     private fun toQuestionActivity() {
         binding.questionButton.setOnClickListener {
-            startActivity(Intent(this, Question_Activity::class.java))
+            startActivity(Intent(this, QuestionActivity::class.java))
         }
     }
 
