@@ -12,12 +12,9 @@ class ScheduleFragment : Fragment() {
     private lateinit var binding: FragmentScheduleBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-
         binding = FragmentScheduleBinding.inflate(layoutInflater)
         return binding.root
     }

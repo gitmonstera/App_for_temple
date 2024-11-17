@@ -9,10 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.apptemple.databinding.ActivitySettingsBinding
 
 class SettingsActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySettingsBinding
+    private val binding by lazy { ActivitySettingsBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -48,5 +47,4 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(Intent(this, ScheduleActivity::class.java))
         }
     }
-
 }

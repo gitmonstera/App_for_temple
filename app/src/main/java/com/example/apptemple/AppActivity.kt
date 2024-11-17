@@ -10,10 +10,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.apptemple.databinding.ActivityAppBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class AppActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityAppBinding
+    private val binding by lazy { ActivityAppBinding.inflate(layoutInflater) }
     private var pressedTime: Long = 0
     private lateinit var toast: Toast
 
@@ -23,7 +22,6 @@ class AppActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        binding = ActivityAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Устанавливаем начальный фрагмент, если сохраненного состояния нет
@@ -32,8 +30,7 @@ class AppActivity : AppCompatActivity() {
             currentFragmentId = R.id.homeItem
         }
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        bottomNavigationView.itemBackground = null
+        binding.bottomNavigationView.itemBackground = null
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -122,7 +119,6 @@ class AppActivity : AppCompatActivity() {
     // Функция для получения фрагмента по ID
     private fun getFragmentById(fragmentId: Int): Fragment {
         return when (fragmentId) {
-            R.id.homeItem -> HomeFragment()
             R.id.lessonsItem -> LessonsFragment()
             R.id.scheduleItem -> ScheduleFragment()
             else -> HomeFragment()
@@ -142,9 +138,6 @@ class AppActivity : AppCompatActivity() {
             startActivity(Intent(this, QuestionActivity::class.java))
         }
     }
-
-
-
     // Функция для игнорирования вызова "super"
     @SuppressLint("MissingSuperCall")
 

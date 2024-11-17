@@ -16,15 +16,14 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityRegisterBinding
-    private lateinit var customNotification : CustomNotification
+    private val binding by lazy { ActivityRegisterBinding.inflate(layoutInflater) }
+    private lateinit var customNotification: CustomNotification
 
-    private lateinit var sharedPreferences : SharedPreferences
-    private lateinit var editor : SharedPreferences.Editor
+    private val sharedPreferences: SharedPreferences by lazy { getSharedPreferences("User Preferences", MODE_PRIVATE) }
+    private val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         window.setFlags(
@@ -33,10 +32,6 @@ class RegisterActivity : AppCompatActivity() {
         )
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         customNotification = CustomNotification(this)
-
-        sharedPreferences = getSharedPreferences("User Preferences", MODE_PRIVATE)
-        editor = sharedPreferences.edit()
-
         toEnterActivity()
         windowCheck()
     }
@@ -56,63 +51,56 @@ class RegisterActivity : AppCompatActivity() {
             val userLogin = binding.registerLoginEdit.text.toString()
             val userPassword = binding.registerPasswordEdit.text.toString()
 
-            if (validateFields(userSecondName, userName, userEmail, userLogin, userPassword)) {
-                if (mailCheck(userEmail)) {
-                    if (binding.agreeCheckBox.isChecked) {
-                        registerUser(userSecondName, userName, userEmail, userLogin, userPassword)
-                    } else {
-                        binding.agreeCheckBox.setTextColor(getColor(R.color.red))
-                        showNotification("Необходимо согласиться с политикой конфиденциальности")
-                    }
-                } else {
-                    showNotification("Неправильная почта")
-                }
-            }
+            if (!validateFields(userSecondName, userName, userEmail, userLogin, userPassword)) return@setOnClickListener
+            if (!mailCheck(userEmail)) return@setOnClickListener showNotification("Неправильная почта")
+            if (binding.agreeCheckBox.isChecked) return@setOnClickListener registerUser(userSecondName, userName, userEmail, userLogin, userPassword)
+            binding.agreeCheckBox.setTextColor(getColor(R.color.red))
+            showNotification("Необходимо согласиться с политикой конфиденциальности")
         }
     }
 
     private fun validateFields(
-        secondName : String,
-        firstName : String,
-        email : String,
-        login : String,
-        password : String,
-    ) : Boolean {
-        if (secondName.isEmpty()) {
+        secondName: String,
+        firstName: String,
+        email: String,
+        login: String,
+        password: String,
+    ): Boolean = when {
+        secondName.isBlank() -> {
             showNotification("Введите фамилию")
-            return false
+            false
         }
-        if (firstName.isEmpty()) {
+        firstName.isBlank() -> {
             showNotification("Введите имя")
-            return false
+            false
         }
-        if (email.isEmpty()) {
+        email.isBlank() -> {
             showNotification("Введите почту")
-            return false
+            false
         }
-        if (login.isEmpty()) {
+        login.isBlank() -> {
             showNotification("Введите логин")
-            return false
+            false
         }
-        if (password.isEmpty()) {
+        password.isBlank() || password.length < 6 -> {
             showNotification("Введите пароль")
-            return false
+            false
         }
-        return true
+        else -> true
     }
 
     private fun registerUser(
-        secondName : String,
-        firstName : String,
-        email : String,
-        login : String,
-        password : String,
+        secondName: String,
+        firstName: String,
+        email: String,
+        login: String,
+        password: String,
     ) {
         val passCheck = sharedPreferences.getBoolean("passChecker", false)
 
         val userData = UserData(
-            last_name = secondName,
-            first_name = firstName,
+            lastName = secondName,
+            firstName = firstName,
             email = email,
             username = login,
             password = password
@@ -120,53 +108,42 @@ class RegisterActivity : AppCompatActivity() {
         val apiService = RetrofitClient.instance.create(UserDataInterface::class.java)
 
         apiService.createUser(userData).enqueue(object : Callback<UserResponse> {
-
-            override fun onResponse(call : Call<UserResponse>, response : Response<UserResponse>) {
-                if (response.isSuccessful) {
-                    if (response.code() == 201) {
-                        cacheSave(secondName, firstName, email, login, password, passCheck)
-                        showNotification("Проверьте почту для завершения регистрации")
-                        Thread.sleep(3000)
-                        startActivity(Intent(this@RegisterActivity, EnterActivity::class.java))
-                    } else {
-                        showNotification("Успешный ответ, но код: ${response.code()}")
-                    }
-                } else {
-                    showNotification("Ошибка регистрации, код: ${response.errorBody()?.string()}")
-                }
+            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+                if(!response.isSuccessful) return showNotification("Ошибка регистрации, код: ${response.errorBody()?.string()}")
+                if(response.code() != 201) return showNotification("Успешный ответ, но код: ${response.code()}")
+                cacheSave(secondName, firstName, email, login, password, passCheck)
+                showNotification("Проверьте почту для завершения регистрации")
+                Thread.sleep(3000)
+                startActivity(Intent(this@RegisterActivity, EnterActivity::class.java))
             }
-
-            override fun onFailure(call : Call<UserResponse>, t : Throwable) {
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                 showNotification("Ошибка сети: ${t.message}")
             }
         })
     }
 
     private fun cacheSave(
-        secondName : String,
-        firstName : String,
-        email : String,
-        login : String,
-        password : String,
-        passCheck : Boolean,
+        secondName: String,
+        firstName: String,
+        email: String,
+        login: String,
+        password: String,
+        passCheck: Boolean,
     ) {
-        if (passCheck) {
-            editor.putString("last_name", secondName)
-            editor.putString("first_name", firstName)
-            editor.putString("email", email)
-            editor.putString("username", login)
-            editor.putString("password", password)
-            editor.apply()
-        } else {
-            showNotification("Логин и пароль не сохранены")
-        }
+        if(!passCheck) return showNotification("Логин и пароль не сохранены")
+        editor.putString("last_name", secondName)
+        editor.putString("first_name", firstName)
+        editor.putString("email", email)
+        editor.putString("username", login)
+        editor.putString("password", password)
+        editor.apply()
     }
 
-    private fun showNotification(message : String) {
+    private fun showNotification(message: String) {
         customNotification.showNotification(message)
     }
 
-    private fun mailCheck(mail : String) : Boolean {
+    private fun mailCheck(mail: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches()
     }
 }
