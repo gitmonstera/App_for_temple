@@ -10,7 +10,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.apptemple.databinding.ActivityAppBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class AppActivity : AppCompatActivity() {
     private val binding by lazy { ActivityAppBinding.inflate(layoutInflater) }
@@ -31,8 +30,7 @@ class AppActivity : AppCompatActivity() {
             currentFragmentId = R.id.homeItem
         }
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        bottomNavigationView.itemBackground = null
+        binding.bottomNavigationView.itemBackground = null
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -121,7 +119,6 @@ class AppActivity : AppCompatActivity() {
     // Функция для получения фрагмента по ID
     private fun getFragmentById(fragmentId: Int): Fragment {
         return when (fragmentId) {
-            R.id.homeItem -> HomeFragment()
             R.id.lessonsItem -> LessonsFragment()
             R.id.scheduleItem -> ScheduleFragment()
             else -> HomeFragment()
@@ -141,9 +138,6 @@ class AppActivity : AppCompatActivity() {
             startActivity(Intent(this, QuestionActivity::class.java))
         }
     }
-
-
-
     // Функция для игнорирования вызова "super"
     @SuppressLint("MissingSuperCall")
 
