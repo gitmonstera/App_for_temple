@@ -12,17 +12,17 @@ import com.example.apptemple.R
 class AnnounceAdapter(
     private val announceItems: List<AnnounceData>,
     private val listener: OnItemClickListener
-): RecyclerView.Adapter<AnnounceAdapter.AnnounceViewHolder>() {
+) : RecyclerView.Adapter<AnnounceAdapter.AnnounceViewHolder>() {
 
     interface OnItemClickListener {
         fun onItemClick(announce: AnnounceData)
     }
 
-    class AnnounceViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class AnnounceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val announceImageView: ImageView = itemView.findViewById(R.id.announceImage)
         val announceTitleView: TextView = itemView.findViewById(R.id.announceTitle)
 
-        fun bind(announce : AnnounceData, clickListener: OnItemClickListener) {
+        fun bind(announce: AnnounceData, clickListener: OnItemClickListener) {
             announceImageView.setImageResource(announce.announceImageData)
             announceTitleView.text = announce.announceTitleData
             itemView.setOnClickListener {
