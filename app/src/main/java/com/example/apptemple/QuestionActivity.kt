@@ -6,10 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.apptemple.databinding.ActivityQuestionBinding
 
 class QuestionActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityQuestionBinding
+    private val binding by lazy { ActivityQuestionBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityQuestionBinding.inflate(layoutInflater)
         setContentView(binding.root)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 

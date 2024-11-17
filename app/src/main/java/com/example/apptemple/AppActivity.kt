@@ -13,7 +13,7 @@ import com.example.apptemple.databinding.ActivityAppBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class AppActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityAppBinding
+    private val binding by lazy { ActivityAppBinding.inflate(layoutInflater) }
     private var pressedTime: Long = 0
     private lateinit var toast: Toast
 
@@ -23,7 +23,6 @@ class AppActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        binding = ActivityAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Устанавливаем начальный фрагмент, если сохраненного состояния нет

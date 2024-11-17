@@ -16,15 +16,14 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityRegisterBinding
+    private val binding by lazy { ActivityRegisterBinding.inflate(layoutInflater) }
     private lateinit var customNotification: CustomNotification
 
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var editor: SharedPreferences.Editor
+    private val sharedPreferences: SharedPreferences by lazy { getSharedPreferences("User Preferences", MODE_PRIVATE) }
+    private val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         window.setFlags(
@@ -33,10 +32,6 @@ class RegisterActivity : AppCompatActivity() {
         )
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         customNotification = CustomNotification(this)
-
-        sharedPreferences = getSharedPreferences("User Preferences", MODE_PRIVATE)
-        editor = sharedPreferences.edit()
-
         toEnterActivity()
         windowCheck()
     }

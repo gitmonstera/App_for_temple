@@ -9,14 +9,13 @@ import com.example.apptemple.databinding.ActivityEnterBinding
 
 class EnterActivity : AppCompatActivity() {
     //Инициализация биндинга и глобальных переменных для более удобной передачи
-    private lateinit var binding : ActivityEnterBinding
+    private val binding by lazy { ActivityEnterBinding.inflate(layoutInflater) }
     private lateinit var customNotification: CustomNotification
     private var userLogin: String? = null
     private var userPassword: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityEnterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
