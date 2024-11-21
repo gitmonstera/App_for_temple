@@ -7,7 +7,7 @@
     <color name="lightBlue">#A3CDFF</color>
     <color name="lightBlack">#383838</color>
     <color name="lightGray">#D9D5D5</color>
-    <color name="ellipseBackground">#E567B0FA</color>
+    <color name="ellipseBackground">#a3cdff</color>
     <color name="ellipseStroke">#0075FF</color>
     <color name="rectangleBackground">#D9D9D9</color>
     <color name="colorPrimary">#2196F3</color>
@@ -17,6 +17,8 @@
     <color name="navigationBarColor">#FFFFFF</color>
     <color name="whiteTwo">#FFAAAA</color>
     <color name="primaryColor">#FF000000</color>
-    <color name="primaryColorDark">#F57C00</color>
+    <color name="primaryColorTopScreen">#00FFFFFF</color>
+    <color name="ColorForTransparentBackground">#00FFFFFF</color>
+
 
 </resources>

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background">
+    android:background="@color/white">
 
     <!-- Регистрационные поля -->
     <LinearLayout
@@ -17,11 +17,11 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
             android:fontFamily="@font/montserrat_regular"
             android:paddingHorizontal="60dp"
-            android:paddingTop="30dp"
+            android:paddingTop="60dp"
             android:text="Регистрация"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -41,7 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:ems="12"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="-5dp"
             android:fontFamily="@font/montserrat_regular"
             android:hint="Фамилия"
             android:inputType="textEmailAddress"
@@ -49,12 +50,22 @@
             android:textColor="@color/black"
             android:textColorHint="@color/gray" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingRight="50dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Поле не может быть пустым"
+            android:textColor="@color/red"
+            android:textSize="14dp" />
+
         <EditText
             android:id="@+id/userNameEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:ems="12"
             android:fontFamily="@font/montserrat_regular"
             android:hint="Имя"

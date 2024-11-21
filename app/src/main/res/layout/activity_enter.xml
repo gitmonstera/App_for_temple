@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".EnterActivity"
     android:orientation="vertical"
-    android:background="@drawable/gradient_background"
+    android:background="@color/white"
     >
 
     <LinearLayout
@@ -36,18 +36,18 @@
         android:orientation="vertical">
 
         <EditText
-            android:fontFamily="@font/montserrat_regular"
             android:id="@+id/enterLoginEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="35dp"
             android:layout_marginBottom="35dp"
-            android:singleLine="true"
+            android:background="@drawable/blur_rectangle"
             android:ems="12"
+            android:fontFamily="@font/montserrat_regular"
             android:hint="Логин"
             android:padding="15dp"
-            android:background="@drawable/blur_rectangle"/>
+            android:singleLine="true" />
 
         <EditText
             android:fontFamily="@font/montserrat_regular"
@@ -81,7 +81,7 @@
             android:paddingVertical="15dp"
             android:text="Войти"
             android:textSize="20dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/lightBlack"/>
 
     </LinearLayout>
 

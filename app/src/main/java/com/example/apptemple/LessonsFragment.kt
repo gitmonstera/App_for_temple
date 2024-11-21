@@ -1,5 +1,6 @@
 package com.example.apptemple
 
+import androidx.core.content.res.ResourcesCompat
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
@@ -55,6 +56,9 @@ private lateinit var binding: FragmentLessonsBinding
             1F
         )
 
+        val buttonWidthInDp = 120
+        val buttonWidthInPx = (buttonWidthInDp * resources.displayMetrics.density).toInt()
+
         val lessonsButton = Button(requireContext())
         lessonsButton.text = "Подробнее"
         lessonsButton.setTextColor(resources.getColor(R.color.black))
@@ -62,9 +66,15 @@ private lateinit var binding: FragmentLessonsBinding
         lessonsButton.textAlignment = View.TEXT_ALIGNMENT_CENTER
         lessonsButton.gravity = Gravity.END
         lessonsButton.layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT,
+            buttonWidthInPx, // Ширина кнопки
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
+
+        val typefaceTitle = ResourcesCompat.getFont(requireContext(), R.font.montserrat_regular)
+        lessonsTitle.typeface = typefaceTitle
+
+        val typefaceButton = ResourcesCompat.getFont(requireContext(), R.font.montserrat_regular)
+        lessonsButton.typeface = typefaceButton
 
         lessonsLinear.addView(lessonsTitle)
         lessonsLinear.addView(lessonsButton)

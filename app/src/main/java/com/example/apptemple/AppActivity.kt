@@ -5,7 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
@@ -13,7 +15,7 @@ import com.example.apptemple.databinding.ActivityAppBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class AppActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityAppBinding
+    private lateinit var binding: ActivityAppBinding
     private var pressedTime: Long = 0
     private lateinit var toast: Toast
 
@@ -22,9 +24,13 @@ class AppActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+
         binding = ActivityAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        enableEdgeToEdge()
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        //window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
         // Устанавливаем начальный фрагмент, если сохраненного состояния нет
         if (savedInstanceState == null) {
@@ -37,13 +43,12 @@ class AppActivity : AppCompatActivity() {
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
+            v.setPadding(systemBars.left, 0, systemBars.right, 0)
             insets
         }
 
         fragmentChanger()
         toSettingsActivity()
-        toQuestionActivity()
     }
 
     companion object {
@@ -100,12 +105,14 @@ class AppActivity : AppCompatActivity() {
                     R.anim.slide_out_left
                 )
             }
+
             FRAGMENT_DIRECTION_LEFT -> {
                 transaction.setCustomAnimations(
                     R.anim.slide_in_left,
                     R.anim.slide_out_right
                 )
             }
+
             FRAGMENT_DIRECTION_FADE -> {
                 transaction.setCustomAnimations(
                     R.anim.fade_in,
@@ -135,15 +142,6 @@ class AppActivity : AppCompatActivity() {
             startActivity(Intent(this, SettingsActivity::class.java))
         }
     }
-
-    // При нажатии на кнопку осуществляется переход на активити "Вопрос-ответ"
-    private fun toQuestionActivity() {
-        binding.questionButton.setOnClickListener {
-            startActivity(Intent(this, QuestionActivity::class.java))
-        }
-    }
-
-
 
     // Функция для игнорирования вызова "super"
     @SuppressLint("MissingSuperCall")

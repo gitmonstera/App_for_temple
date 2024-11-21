@@ -5,33 +5,34 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AppActivity"
     android:background="@color/white"
-    >
+    tools:context=".AppActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
+        android:background="@drawable/gradient_top_screen"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:fontFamily="@font/montserrat_regular"
             android:id="@+id/frameName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/montserrat_regular"
             android:text="Главная"
             android:textColor="@color/black"
             android:textSize="25sp" />
-
 
         <ImageView
             android:id="@+id/settingsButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="end"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="10dp"
             android:src="@drawable/baseline_settings_24" />
 
@@ -48,25 +49,13 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <ImageButton
-        android:id="@+id/questionButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignBottom="@+id/appFragmentContainer"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/lightblue_ellipse"
-        android:backgroundTint="@color/lightBlue"
-        android:src="@drawable/question_icon"/>
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         style="@style/CustomBottomNavView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp"
+        android:layout_marginBottom="2dp"
         android:background="@drawable/gradient_background_bottom"
         android:minHeight="67dp"
         app:itemBackground="@android:color/transparent"
