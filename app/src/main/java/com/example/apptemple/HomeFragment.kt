@@ -52,11 +52,11 @@ class HomeFragment : Fragment() {
         announceRecyclerView.layoutManager = layoutManager
 
         val announceItems = listOf(
-            AnnounceData("Первый анонс", R.mipmap.justannounce),
-            AnnounceData("Второй анонс", R.mipmap.justannounce2),
-            AnnounceData("Третий анонс", R.mipmap.justannounce3),
-            AnnounceData("Четвертый анонс", R.mipmap.justannounce4),
-            AnnounceData("Пятый анонс", R.mipmap.justannounce5)
+            AnnounceData("Ретроградный Меркурий", R.mipmap.justannounce),
+            AnnounceData("За МКАДом", R.mipmap.justannounce2),
+            AnnounceData("Москва", R.mipmap.justannounce3),
+            AnnounceData("Пипец капец", R.mipmap.justannounce4),
+            AnnounceData("Собачка :3", R.mipmap.justannounce5)
         )
 
         val adapter = AnnounceAdapter(announceItems, object : AnnounceAdapter.OnItemClickListener {

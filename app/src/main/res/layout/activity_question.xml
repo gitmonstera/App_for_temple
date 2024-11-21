@@ -12,6 +12,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/gradient_top_screen"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -19,9 +20,52 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="start"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginEnd="15dp"
             android:src="@drawable/baseline_arrow_back_24" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Помощь"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            tools:layout_editor_absoluteX="71dp"
+            tools:layout_editor_absoluteY="15dp" />
+
     </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:gravity="center"
+        android:text="Здесь вы можете задать \n любой вопрос"
+        android:textSize="23dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/enterLoginEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="160dp"
+        android:background="@drawable/blur_rectangle"
+        android:ems="16"
+        android:fontFamily="@font/montserrat_regular"
+        android:hint="Введите ваш вопрос"
+        android:padding="15dp"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

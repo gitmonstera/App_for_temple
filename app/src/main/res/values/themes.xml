@@ -6,8 +6,7 @@
         <!-- Customize your light theme here. -->
         <item name="android:windowBackground">@color/white</item>
         <item name="android:colorBackground">@color/whiteTwo</item>
-        <item name="colorPrimaryDark">@color/primaryColorDark</item>
-        <item name="android:statusBarColor">@color/primaryColorDark</item>
+        <item name="android:statusBarColor">#00FFFFFF</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:foreground">@null</item>
         <item name="rippleColor">@null</item>

@@ -1,19 +1,22 @@
 package com.example.apptemple
 
-import androidx.appcompat.app.AppCompatDelegate
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.apptemple.databinding.ActivityQuestionBinding
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.apptemple.databinding.ActivityProfileBinding
 
-class QuestionActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityQuestionBinding
+class ProfileActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityProfileBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityQuestionBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
         enableEdgeToEdge()
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        binding = ActivityProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         goBack()
     }

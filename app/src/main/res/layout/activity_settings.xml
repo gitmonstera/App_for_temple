@@ -13,6 +13,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/gradient_top_screen"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -20,6 +21,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="start"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginEnd="15dp"
             android:src="@drawable/baseline_arrow_back_24" />
 
@@ -28,6 +31,7 @@
             android:fontFamily="@font/montserrat_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:text="Настройки"
             android:textColor="@color/black"
             android:textSize="25sp" />
@@ -76,6 +80,32 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Чаты секций"
+            android:textSize="25dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textAlignment="textStart"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/questionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="15dp">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/lightblue_ellipse"
+            android:backgroundTint="@color/lightBlue"
+            android:src="@drawable/question_icon" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Помощь"
             android:textSize="25dp"
             android:fontFamily="@font/montserrat_regular"
             android:textAlignment="textStart"/>

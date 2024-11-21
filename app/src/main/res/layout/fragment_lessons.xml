@@ -27,6 +27,7 @@
             android:singleLine="true"
             android:hint="Поиск по кружкам"
             android:textColorHint="@color/black"
+            android:fontFamily="@font/montserrat_regular"
             android:background="@android:color/transparent"/>
 
         <ImageView

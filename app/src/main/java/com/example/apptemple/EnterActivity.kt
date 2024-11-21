@@ -4,12 +4,13 @@ import androidx.appcompat.app.AppCompatDelegate
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.apptemple.databinding.ActivityEnterBinding
 
 class EnterActivity : AppCompatActivity() {
     //Инициализация биндинга и глобальных переменных для более удобной передачи
-    private lateinit var binding : ActivityEnterBinding
+    private lateinit var binding: ActivityEnterBinding
     private lateinit var customNotification: CustomNotification
     private var userLogin: String? = null
     private var userPassword: String? = null
@@ -18,9 +19,9 @@ class EnterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEnterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        enableEdgeToEdge()
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        //window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
         customNotification = CustomNotification(this)
         enterData()
@@ -33,8 +34,7 @@ class EnterActivity : AppCompatActivity() {
         binding.enterEnterButton.setOnClickListener {
             if (binding.enterLoginEdit.text.toString() == userLogin && binding.enterPasswordEdit.text.toString() == userPassword) {
                 startActivity(Intent(this, AppActivity::class.java))
-            }
-            else {
+            } else {
                 showNotifications("Введен неверный логин или пароль")
             }
         }

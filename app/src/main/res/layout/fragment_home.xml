@@ -13,32 +13,26 @@
                     android:orientation="horizontal"
                     android:background="@android:color/transparent">
 
-                        <ImageView
-                             android:id="@+id/backArrow"
-                             android:layout_width="30dp"
-                             android:layout_height="match_parent"
-                             android:src="@drawable/baseline_arrow_back_24" />
-
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/announceSlider"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="0dp"
-                            android:layout_toStartOf="@+id/forwardArrow"
-                            android:layout_toEndOf="@+id/backArrow"
                             android:background="@android:color/transparent"
                             android:orientation="horizontal">
-
                         </androidx.recyclerview.widget.RecyclerView>
 
                         <ImageView
+                            android:id="@+id/backArrow"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent" />
+
+                        <ImageView
                             android:id="@+id/forwardArrow"
-                            android:layout_width="30dp"
+                            android:layout_width="40dp"
                             android:layout_height="match_parent"
                             android:layout_alignParentEnd="true"
                             android:layout_marginEnd="0dp"
-                            android:rotation="180"
-                            android:src="@drawable/baseline_arrow_back_24" />
+                            android:rotation="180" />
 
                         </RelativeLayout>
 

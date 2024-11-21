@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.apptemple.APIServices.UserDataInterface
 import com.example.apptemple.DataClasses.UserData
@@ -31,6 +32,7 @@ class RegisterActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
+        enableEdgeToEdge()
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         customNotification = CustomNotification(this)
 
