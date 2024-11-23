@@ -4,12 +4,14 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.GestureDetector
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -117,10 +119,18 @@ class HomeFragment : Fragment() {
 
 
                 val newsData = listOf(
-                    NewsData("Первая новость", "Описание новости", R.mipmap.justannounce5),
+                    NewsData("Первая новость", "Эта книга адресована всем, кто изучает русский язык. Но состоит она не из правил, упражнений и учебных текстов. Для этого созданы другие замечательные учебники.\n" +
+                            "\n" +
+                            "У этой книги совсем иная задача. Она поможет вам научиться не только разговаривать, но и размышлять по-русски. Книга, которую вы держите в руках, составлена из афоризмов и размышлений великих мыслителей, писателей, поэтов, философов и общественных деятелей различных эпох. Их мысли - о тех вопросах, которые не перестают волновать человечество.\n" +
+                            "\n" +
+                            "Вы можете соглашаться или не соглашаться с тем, что прочитаете в этой книге. Возможно, вам покажется, что какие-то мысли уже устарели. Но вы должны обязательно подумать и обосновать, почему вы так считаете.\n" +
+                            "\n" +
+                            "А еще вы узнаете и почувствуете, как прекрасно звучат слова любви, сострадания, мудрости и доброты на русском языке.", R.mipmap.justannounce5),
                     NewsData("Вторая новость", "Описание новости", R.mipmap.justannounce4),
                     NewsData("Третья новость", "Описание новости", R.mipmap.justannounce3),
-                    NewsData("Четвертая новость", "Описание новости", R.mipmap.justannounce2),
+                    NewsData("Четвертая новость", "Вы можете соглашаться или не соглашаться с тем, что прочитаете в этой книге. Возможно, вам покажется, что какие-то мысли уже устарели. Но вы должны обязательно подумать и обосновать, почему вы так считаете.\n" +
+                            "\n" +
+                            "А еще вы узнаете и почувствуете, как прекрасно звучат слова любви, сострадания, мудрости и доброты на русском языке.", R.mipmap.justannounce2),
                     NewsData("Пятая новость", "Описание новости", R.mipmap.justannounce),
                 )
 

@@ -2,40 +2,62 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginVertical="15dp">
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="5dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/newsRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="——————————————————"
+        android:textAlignment="center"
+        android:textColor="@color/lightGray"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/newsTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:text="Это тестовое название"
         android:fontFamily="@font/montserrat_regular"
-        android:textColor="@color/black"
+        android:text="Это тестовое название"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="20dp" />
+
+    <ImageView
+        android:id="@+id/newsImage"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_gravity="center"
+        android:scaleType="fitXY"
+        android:src="@mipmap/justannounce" />
 
     <TextView
         android:id="@+id/newsDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:text="Это тестовое описание"
+        android:ellipsize="end"
         android:fontFamily="@font/montserrat_regular"
+        android:maxLines="3"
+        android:text="Это тестовое описание"
         android:textColor="@color/black"
-        android:textAlignment="center"
         android:textSize="20dp" />
 
-    <ImageView
-        android:id="@+id/newsImage"
+    <TextView
+        android:id="@+id/moreInfo"
         android:layout_width="match_parent"
-        android:paddingHorizontal="20dp"
-        android:layout_height="200dp"
-        android:scaleType="fitXY"
-        android:layout_gravity="center"
-        android:src="@mipmap/justannounce" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="Показать еще"
+        android:textColor="@color/ellipseStroke"
+        android:textSize="18dp" />
 
 </LinearLayout>
