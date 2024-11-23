@@ -1,37 +1,66 @@
 package com.example.apptemple.Adapters
 
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.apptemple.DataClasses.NewsData
-import com.example.apptemple.R
 import com.example.apptemple.databinding.NewsItemBinding
 
-class NewsAdapter(private val newsItems: List<NewsData>): RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter(private val newsItems: List<NewsData>) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
-    inner class NewsViewHolder(private val binding : NewsItemBinding):
-        RecyclerView.ViewHolder(binding.root) {
+    inner class NewsViewHolder(private val binding: NewsItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        private var isExpanded = false // Локальное состояние для каждой карточки
+
         fun bind(news: NewsData) {
             binding.newsTitle.text = news.newsTitle
             binding.newsDescription.text = news.newsDescription
             Glide.with(binding.newsImage.context)
                 .load(news.newsImage)
                 .into(binding.newsImage)
+
+            // Устанавливаем ограничение текста
+            binding.newsDescription.maxLines = 3
+            binding.newsDescription.ellipsize = TextUtils.TruncateAt.END
+
+            // Проверяем, превышает ли текст лимит в 3 строки
+            binding.newsDescription.post {
+                val lineCount = binding.newsDescription.lineCount
+                if (lineCount < 3) {
+                    binding.moreInfo.visibility = View.INVISIBLE
+                } else {
+                    binding.moreInfo.visibility = View.VISIBLE
+                }
+            }
+
+            // Устанавливаем обработчик для кнопки "Подробнее"
+            binding.moreInfo.setOnClickListener {
+                if (isExpanded) {
+                    // Скрыть текст, ограничив его тремя строками
+                    binding.newsDescription.maxLines = 3
+                    binding.newsDescription.ellipsize = TextUtils.TruncateAt.END
+                    binding.moreInfo.text = "Подробнее"
+                } else {
+                    // Показать полный текст
+                    binding.newsDescription.maxLines = Int.MAX_VALUE
+                    binding.newsDescription.ellipsize = null
+                    binding.moreInfo.text = "Свернуть"
+                }
+                isExpanded = !isExpanded // Переключаем состояние
+            }
         }
     }
 
-    override fun onCreateViewHolder(parent : ViewGroup, viewType : Int) : NewsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val binding = NewsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NewsViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder : NewsViewHolder, position : Int) {
+    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         holder.bind(newsItems[position])
     }
 
-    override fun getItemCount() : Int = newsItems.size
+    override fun getItemCount(): Int = newsItems.size
 }
