@@ -1,7 +1,6 @@
 package com.example.apptemple
 
 import androidx.core.content.res.ResourcesCompat
-import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
 import androidx.fragment.app.Fragment
@@ -14,21 +13,21 @@ import android.widget.TextView
 import com.example.apptemple.databinding.FragmentLessonsBinding
 
 class LessonsFragment : Fragment() {
-private lateinit var binding: FragmentLessonsBinding
+    private lateinit var binding: FragmentLessonsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
 
         binding = FragmentLessonsBinding.inflate(layoutInflater)
         return binding.root
     }
 
-    override fun onViewCreated(view : View, savedInstanceState : Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        for (i in 0 until 5){
+        for (i in 0 until 5) {
             lessonsUpdater()
         }
     }
