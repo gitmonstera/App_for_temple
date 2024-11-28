@@ -3,7 +3,6 @@ package com.example.apptemple
 import androidx.appcompat.app.AppCompatDelegate
 import android.content.Intent
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.apptemple.databinding.ActivityEnterBinding
@@ -32,11 +31,9 @@ class EnterActivity : AppCompatActivity() {
     private fun enterCheck() {
         //При нажатии на кнопку данные логина и пароля проверяются с данными из кэша и либо осуществляется вход, либо выводится сообщение об ошибке
         binding.enterEnterButton.setOnClickListener {
-            if (binding.enterLoginEdit.text.toString() == userLogin && binding.enterPasswordEdit.text.toString() == userPassword) {
-                startActivity(Intent(this, AppActivity::class.java))
-            } else {
-                showNotifications("Введен неверный логин или пароль")
-            }
+            if(binding.enterLoginEdit.text.toString() != userLogin || binding.enterPasswordEdit.text.toString() != userPassword)
+                return@setOnClickListener customNotification.showNotification("Введен неверный логин или пароль")
+            startActivity(Intent(this, AppActivity::class.java))
         }
     }
 
@@ -51,7 +48,7 @@ class EnterActivity : AppCompatActivity() {
         binding.passwordCheckbox.isChecked = passChecker
 
         //Если разрешение есть, то логин и пароль выводятся в поля
-        if (passChecker) {
+        if(passChecker) {
             binding.enterLoginEdit.setText(userLogin)
             binding.enterPasswordEdit.setText(userPassword)
         }

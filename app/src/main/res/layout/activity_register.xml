@@ -45,20 +45,10 @@
             android:layout_marginBottom="-5dp"
             android:fontFamily="@font/montserrat_regular"
             android:hint="Фамилия"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:singleLine="true"
             android:textColor="@color/black"
             android:textColorHint="@color/gray" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingRight="50dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="Поле не может быть пустым"
-            android:textColor="@color/red"
-            android:textSize="14dp" />
 
         <EditText
             android:id="@+id/userNameEdit"
@@ -69,7 +59,7 @@
             android:ems="12"
             android:fontFamily="@font/montserrat_regular"
             android:hint="Имя"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:singleLine="true"
             android:textColor="@color/black"
             android:textColorHint="@color/gray" />
@@ -113,7 +103,8 @@
             android:hint="Пароль"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:textColorHint="@color/gray" />
+            android:textColorHint="@color/gray"
+            android:inputType="textVisiblePassword"/>
 
         <CheckBox
             android:id="@+id/agreeCheckBox"

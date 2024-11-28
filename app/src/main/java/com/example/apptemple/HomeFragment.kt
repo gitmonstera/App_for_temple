@@ -28,26 +28,27 @@ import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
-    private lateinit var binding : FragmentHomeBinding
-    private lateinit var dialogBinding : AnnouncesDetailsFragmentBinding
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var dialogBinding: AnnouncesDetailsFragmentBinding
     private var currentPosition = 0
+    private lateinit var gestureDetector: GestureDetector
 
     //Функция с конфигурацией запуска (тут менять нечего)
     override fun onCreateView(
-        inflater : LayoutInflater, container : ViewGroup?,
-        savedInstanceState : Bundle?
-    ) : View {
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
 
         binding = FragmentHomeBinding.inflate(layoutInflater)
         return binding.root
     }
 
-    override fun onViewCreated(view : View, savedInstanceState : Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         announceSliderAdapter()
-        buttonsSlide()
         newsUpdater()
+        announceHider()
     }
 
     private fun announceSliderAdapter() {
@@ -64,7 +65,7 @@ class HomeFragment : Fragment() {
         )
 
         val adapter = AnnounceAdapter(announceItems, object : AnnounceAdapter.OnItemClickListener {
-            override fun onItemClick(announce : AnnounceData) {
+            override fun onItemClick(announce: AnnounceData) {
                 announceDialog(announce.announceImageData, announce.announceTitleData)
             }
         })
@@ -74,7 +75,7 @@ class HomeFragment : Fragment() {
         snapHelper.attachToRecyclerView(announceRecyclerView)
     }
 
-    private fun buttonsSlide() {
+    /*private fun buttonsSlide() {
         binding.forwardArrow.setOnClickListener {
             val itemCount = binding.announceSlider.adapter?.itemCount ?: 0
             if (currentPosition < itemCount - 1) {
@@ -89,9 +90,9 @@ class HomeFragment : Fragment() {
                 binding.announceSlider.smoothScrollToPosition(currentPosition)
             }
         }
-    }
+    }*/
 
-    private fun announceDialog(image : Int, title : String) {
+    private fun announceDialog(image: Int, title: String) {
         val dialog = Dialog(requireContext())
         dialogBinding =
             AnnouncesDetailsFragmentBinding.inflate(LayoutInflater.from(requireContext()))
@@ -119,27 +120,68 @@ class HomeFragment : Fragment() {
 
 
                 val newsData = listOf(
-                    NewsData("Первая новость", "Эта книга адресована всем, кто изучает русский язык. Но состоит она не из правил, упражнений и учебных текстов. Для этого созданы другие замечательные учебники.\n" +
-                            "\n" +
-                            "У этой книги совсем иная задача. Она поможет вам научиться не только разговаривать, но и размышлять по-русски. Книга, которую вы держите в руках, составлена из афоризмов и размышлений великих мыслителей, писателей, поэтов, философов и общественных деятелей различных эпох. Их мысли - о тех вопросах, которые не перестают волновать человечество.\n" +
-                            "\n" +
-                            "Вы можете соглашаться или не соглашаться с тем, что прочитаете в этой книге. Возможно, вам покажется, что какие-то мысли уже устарели. Но вы должны обязательно подумать и обосновать, почему вы так считаете.\n" +
-                            "\n" +
-                            "А еще вы узнаете и почувствуете, как прекрасно звучат слова любви, сострадания, мудрости и доброты на русском языке.", R.mipmap.justannounce5),
+                    NewsData(
+                        "Первая новость",
+                        "Эта книга адресована всем, кто изучает русский язык. Но состоит она не из правил, упражнений и учебных текстов. Для этого созданы другие замечательные учебники.\n" +
+                                "\n" +
+                                "У этой книги совсем иная задача. Она поможет вам научиться не только разговаривать, но и размышлять по-русски. Книга, которую вы держите в руках, составлена из афоризмов и размышлений великих мыслителей, писателей, поэтов, философов и общественных деятелей различных эпох. Их мысли - о тех вопросах, которые не перестают волновать человечество.\n" +
+                                "\n" +
+                                "Вы можете соглашаться или не соглашаться с тем, что прочитаете в этой книге. Возможно, вам покажется, что какие-то мысли уже устарели. Но вы должны обязательно подумать и обосновать, почему вы так считаете.\n" +
+                                "\n" +
+                                "А еще вы узнаете и почувствуете, как прекрасно звучат слова любви, сострадания, мудрости и доброты на русском языке.",
+                        R.mipmap.justannounce5
+                    ),
                     NewsData("Вторая новость", "Описание новости", R.mipmap.justannounce4),
                     NewsData("Третья новость", "Описание новости", R.mipmap.justannounce3),
-                    NewsData("Четвертая новость", "Вы можете соглашаться или не соглашаться с тем, что прочитаете в этой книге. Возможно, вам покажется, что какие-то мысли уже устарели. Но вы должны обязательно подумать и обосновать, почему вы так считаете.\n" +
-                            "\n" +
-                            "А еще вы узнаете и почувствуете, как прекрасно звучат слова любви, сострадания, мудрости и доброты на русском языке.", R.mipmap.justannounce2),
+                    NewsData(
+                        "Четвертая новость",
+                        "Вы можете соглашаться или не соглашаться с тем, что прочитаете в этой книге. Возможно, вам покажется, что какие-то мысли уже устарели. Но вы должны обязательно подумать и обосновать, почему вы так считаете.\n" +
+                                "\n" +
+                                "А еще вы узнаете и почувствуете, как прекрасно звучат слова любви, сострадания, мудрости и доброты на русском языке.",
+                        R.mipmap.justannounce2
+                    ),
                     NewsData("Пятая новость", "Описание новости", R.mipmap.justannounce),
                 )
 
                 val newsAdapter = NewsAdapter(newsData)
                 binding.newsSlider.adapter = newsAdapter
-            } catch (e : Exception) {
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
     }
 
+    private fun announceHider() {
+        binding.newsSlider.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                if (!recyclerView.canScrollVertically(-1)) {
+                    showAnnounceSlider()
+                } else if (dy > 0) {
+                    hideAnnounceSlider()
+                }
+            }
+        })
+    }
+
+    private fun hideAnnounceSlider() {
+        binding.announceSlider.animate().cancel()
+        binding.announceSlider.animate()
+            .alpha(0F)
+            .setDuration(300)
+            .withEndAction {
+                binding.smthg.visibility = View.GONE
+                binding.announceSlider.visibility = View.GONE
+            }
+    }
+
+    private fun showAnnounceSlider() {
+        binding.announceSlider.animate().cancel()
+        binding.announceSlider.visibility = View.VISIBLE
+        binding.smthg.visibility = View.VISIBLE
+        binding.announceSlider.animate()
+            .alpha(1F)
+            .setDuration(300)
+    }
 }

@@ -17,13 +17,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityRegisterBinding
-    private lateinit var customNotification : CustomNotification
+    private lateinit var binding: ActivityRegisterBinding
+    private lateinit var customNotification: CustomNotification
 
-    private lateinit var sharedPreferences : SharedPreferences
-    private lateinit var editor : SharedPreferences.Editor
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
 
-    override fun onCreate(savedInstanceState : Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -74,12 +74,12 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun validateFields(
-        secondName : String,
-        firstName : String,
-        email : String,
-        login : String,
-        password : String,
-    ) : Boolean {
+        secondName: String,
+        firstName: String,
+        email: String,
+        login: String,
+        password: String,
+    ): Boolean {
         if (secondName.isEmpty()) {
             showNotification("Введите фамилию")
             return false
@@ -104,11 +104,11 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun registerUser(
-        secondName : String,
-        firstName : String,
-        email : String,
-        login : String,
-        password : String,
+        secondName: String,
+        firstName: String,
+        email: String,
+        login: String,
+        password: String,
     ) {
         val passCheck = sharedPreferences.getBoolean("passChecker", false)
 
@@ -123,7 +123,7 @@ class RegisterActivity : AppCompatActivity() {
 
         apiService.createUser(userData).enqueue(object : Callback<UserResponse> {
 
-            override fun onResponse(call : Call<UserResponse>, response : Response<UserResponse>) {
+            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful) {
                     if (response.code() == 201) {
                         cacheSave(secondName, firstName, email, login, password, passCheck)
@@ -138,19 +138,19 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call : Call<UserResponse>, t : Throwable) {
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                 showNotification("Ошибка сети: ${t.message}")
             }
         })
     }
 
     private fun cacheSave(
-        secondName : String,
-        firstName : String,
-        email : String,
-        login : String,
-        password : String,
-        passCheck : Boolean,
+        secondName: String,
+        firstName: String,
+        email: String,
+        login: String,
+        password: String,
+        passCheck: Boolean,
     ) {
         if (passCheck) {
             editor.putString("last_name", secondName)
@@ -164,11 +164,11 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun showNotification(message : String) {
+    private fun showNotification(message: String) {
         customNotification.showNotification(message)
     }
 
-    private fun mailCheck(mail : String) : Boolean {
+    private fun mailCheck(mail: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches()
     }
 }
