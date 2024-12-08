@@ -3,11 +3,10 @@ package com.example.apptemple.Adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apptemple.DataClasses.AnnounceData
 import com.example.apptemple.R
+import com.example.apptemple.databinding.ItemAnnounceBinding
 
 class AnnounceAdapter(
     private val announceItems: List<AnnounceData>,
@@ -18,13 +17,11 @@ class AnnounceAdapter(
         fun onItemClick(announce: AnnounceData)
     }
 
-    class AnnounceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val announceImageView: ImageView = itemView.findViewById(R.id.announceImage)
-        val announceTitleView: TextView = itemView.findViewById(R.id.announceTitle)
+    class AnnounceViewHolder(private val binding: ItemAnnounceBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(announce: AnnounceData, clickListener: OnItemClickListener) {
-            announceImageView.setImageResource(announce.announceImageData)
-            announceTitleView.text = announce.announceTitleData
+            binding.announceImage.setImageResource(announce.announceImageData)
+            binding.announceTitle.text = announce.announceTitleData
             itemView.setOnClickListener {
                 clickListener.onItemClick(announce)
             }
@@ -32,15 +29,12 @@ class AnnounceAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnnounceViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.announce_item, parent, false)
-        return AnnounceViewHolder(view)
+        val binding = ItemAnnounceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return AnnounceViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: AnnounceViewHolder, position: Int) {
         val announceItem = announceItems[position]
-        holder.announceImageView.setImageResource(announceItem.announceImageData)
-        holder.announceTitleView.text = announceItem.announceTitleData
         holder.bind(announceItem, listener)
     }
 

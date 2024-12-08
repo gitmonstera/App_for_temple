@@ -30,8 +30,6 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var dialogBinding: AnnouncesDetailsFragmentBinding
-    private var currentPosition = 0
-    private lateinit var gestureDetector: GestureDetector
 
     //Функция с конфигурацией запуска (тут менять нечего)
     override fun onCreateView(

@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.apptemple.DataClasses.NewsData
-import com.example.apptemple.databinding.NewsItemBinding
+import com.example.apptemple.databinding.ItemNewsBinding
 
 class NewsAdapter(private val newsItems: List<NewsData>) :
     RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
-    inner class NewsViewHolder(private val binding: NewsItemBinding) :
+    inner class NewsViewHolder(private val binding: ItemNewsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private var isExpanded = false // Локальное состояние для каждой карточки
 
@@ -28,7 +28,7 @@ class NewsAdapter(private val newsItems: List<NewsData>) :
 
             binding.newsDescription.post {
                 val lineCount = binding.newsDescription.lineCount
-                if (lineCount < 3) {
+                if(lineCount < 3) {
                     binding.moreInfo.visibility = View.GONE
                 } else {
                     binding.moreInfo.visibility = View.VISIBLE
@@ -36,7 +36,7 @@ class NewsAdapter(private val newsItems: List<NewsData>) :
             }
 
             binding.moreInfo.setOnClickListener {
-                if (isExpanded) {
+                if(isExpanded) {
                     // Скрыть текст, ограничив его тремя строками
                     binding.newsDescription.maxLines = 3
                     binding.newsDescription.ellipsize = TextUtils.TruncateAt.END
@@ -53,7 +53,7 @@ class NewsAdapter(private val newsItems: List<NewsData>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
-        val binding = NewsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NewsViewHolder(binding)
     }
 

@@ -1,15 +1,14 @@
 package com.example.apptemple
 
-import android.view.WindowManager
-import androidx.appcompat.app.AppCompatDelegate
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.apptemple.APIServices.UserDataInterface
 import com.example.apptemple.DataClasses.UserData
-import com.example.apptemple.Responses.UserResponse
+import com.example.apptemple.Responses.ServerResponse
 import com.example.apptemple.Retrofit.RetrofitClient
 import com.example.apptemple.databinding.ActivityRegisterBinding
 import retrofit2.Call
@@ -27,11 +26,6 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        )
         enableEdgeToEdge()
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         customNotification = CustomNotification(this)
@@ -58,9 +52,9 @@ class RegisterActivity : AppCompatActivity() {
             val userLogin = binding.registerLoginEdit.text.toString()
             val userPassword = binding.registerPasswordEdit.text.toString()
 
-            if (validateFields(userSecondName, userName, userEmail, userLogin, userPassword)) {
-                if (mailCheck(userEmail)) {
-                    if (binding.agreeCheckBox.isChecked) {
+            if(validateFields(userSecondName, userName, userEmail, userLogin, userPassword)) {
+                if(mailCheck(userEmail)) {
+                    if(binding.agreeCheckBox.isChecked) {
                         registerUser(userSecondName, userName, userEmail, userLogin, userPassword)
                     } else {
                         binding.agreeCheckBox.setTextColor(getColor(R.color.red))
@@ -80,23 +74,23 @@ class RegisterActivity : AppCompatActivity() {
         login: String,
         password: String,
     ): Boolean {
-        if (secondName.isEmpty()) {
+        if(secondName.isEmpty()) {
             showNotification("Введите фамилию")
             return false
         }
-        if (firstName.isEmpty()) {
+        if(firstName.isEmpty()) {
             showNotification("Введите имя")
             return false
         }
-        if (email.isEmpty()) {
+        if(email.isEmpty()) {
             showNotification("Введите почту")
             return false
         }
-        if (login.isEmpty()) {
+        if(login.isEmpty()) {
             showNotification("Введите логин")
             return false
         }
-        if (password.isEmpty()) {
+        if(password.isEmpty()) {
             showNotification("Введите пароль")
             return false
         }
@@ -113,19 +107,19 @@ class RegisterActivity : AppCompatActivity() {
         val passCheck = sharedPreferences.getBoolean("passChecker", false)
 
         val userData = UserData(
-            last_name = secondName,
-            first_name = firstName,
+            lastName = secondName,
+            firstName = firstName,
             email = email,
             username = login,
             password = password
         )
         val apiService = RetrofitClient.instance.create(UserDataInterface::class.java)
 
-        apiService.createUser(userData).enqueue(object : Callback<UserResponse> {
+        apiService.createUser(userData).enqueue(object : Callback<ServerResponse> {
 
-            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                if (response.isSuccessful) {
-                    if (response.code() == 201) {
+            override fun onResponse(call: Call<ServerResponse>, response: Response<ServerResponse>) {
+                if(response.isSuccessful) {
+                    if(response.code() == 201) {
                         cacheSave(secondName, firstName, email, login, password, passCheck)
                         showNotification("Проверьте почту для завершения регистрации")
                         Thread.sleep(3000)
@@ -138,7 +132,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+            override fun onFailure(call: Call<ServerResponse>, t: Throwable) {
                 showNotification("Ошибка сети: ${t.message}")
             }
         })
@@ -152,7 +146,7 @@ class RegisterActivity : AppCompatActivity() {
         password: String,
         passCheck: Boolean,
     ) {
-        if (passCheck) {
+        if(passCheck) {
             editor.putString("last_name", secondName)
             editor.putString("first_name", firstName)
             editor.putString("email", email)
