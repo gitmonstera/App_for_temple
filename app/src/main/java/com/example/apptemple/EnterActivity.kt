@@ -5,14 +5,19 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.apptemple.APIServices.UserDataInterface
+import com.example.apptemple.DataClasses.LoginData
+import com.example.apptemple.Responses.ServerResponse
+import com.example.apptemple.Retrofit.RetrofitClient
 import com.example.apptemple.databinding.ActivityEnterBinding
+import okhttp3.Callback
+import retrofit2.Call
+import retrofit2.Response
 
 class EnterActivity : AppCompatActivity() {
     //Инициализация биндинга и глобальных переменных для более удобной передачи
     private lateinit var binding: ActivityEnterBinding
     private lateinit var customNotification: CustomNotification
-    private var userLogin: String? = null
-    private var userPassword: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,54 +28,49 @@ class EnterActivity : AppCompatActivity() {
         //window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
         customNotification = CustomNotification(this)
-        enterData()
-        enterCheck()
-        passwordCheck()
+
+        binding.enterEnterButton.setOnClickListener {
+            enterCheck()
+        }
+
+        binding.enterRegisterButton.setOnClickListener {
+            goRegister()
+        }
     }
 
     private fun enterCheck() {
-        //При нажатии на кнопку данные логина и пароля проверяются с данными из кэша и либо осуществляется вход, либо выводится сообщение об ошибке
-        binding.enterEnterButton.setOnClickListener {
-            if(binding.enterLoginEdit.text.toString() != userLogin || binding.enterPasswordEdit.text.toString() != userPassword)
-                return@setOnClickListener customNotification.showNotification("Введен неверный логин или пароль")
-            startActivity(Intent(this, AppActivity::class.java))
+        val login = binding.enterLoginEdit.text.toString()
+        val password = binding.enterLoginEdit.text.toString()
+
+        if (login.isEmpty() || password.isEmpty()) {
+            showNotifications("Все поля должны быть заполнены")
         }
+
+        val loginData = LoginData(login = login, password = password)
+
+        val apiService = RetrofitClient.instance.create(UserDataInterface::class.java)
+        apiService.authorizeUser(loginData).enqueue(object : retrofit2.Callback<ServerResponse> {
+
+            override fun onResponse(call: Call<ServerResponse>, response: Response<ServerResponse>) {
+                if(response.isSuccessful) {
+                    if(response.code() == 201) {
+                        startActivity(Intent(this@EnterActivity, EnterActivity::class.java))
+                    } else {
+                        showNotifications("Успешный ответ, но код: ${response.code()}")
+                    }
+                } else {
+                    showNotifications("Ошибка авторизации, код: ${response.errorBody()?.string()}")
+                }
+            }
+
+            override fun onFailure(call: Call<ServerResponse>, t: Throwable) {
+                showNotifications("Ошибка сети: ${t.message}")
+            }
+        })
     }
 
-    private fun enterData() {
-        //Переменная для ввода и вывода данных из кэша
-        val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
-        userLogin = sharedPreferences.getString("username", "")
-        userPassword = sharedPreferences.getString("password", "")
-        val passChecker = sharedPreferences.getBoolean("passChecker", false)
-
-        //Галочка "Запомнить меня" привязана к флажку и в зависимости от первоначального выбора будет вкл/выкл
-        binding.passwordCheckbox.isChecked = passChecker
-
-        //Если разрешение есть, то логин и пароль выводятся в поля
-        if(passChecker) {
-            binding.enterLoginEdit.setText(userLogin)
-            binding.enterPasswordEdit.setText(userPassword)
-        }
-    }
-
-    private fun passwordCheck() {
-        //Переменная для ввода и вывода данных из кэша
-        val sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-
-        binding.passwordCheckbox.setOnCheckedChangeListener { _, _ ->
-            val passChecker = binding.passwordCheckbox.isChecked
-            editor.putBoolean("passChecker", passChecker)
-            editor.apply()
-        }
-
-
-        //При нажатии на кнопку "Зарегистрироваться" состояние флажка сохраняется в кэш
-        binding.enterRegisterButton.setOnClickListener {
-            //Инициализация исполнителя и его запуск(переход на активити регистрации)
-            startActivity(Intent(this, RegisterActivity::class.java))
-        }
+    private fun goRegister() {
+        startActivity(Intent(this@EnterActivity, RegisterActivity::class.java))
     }
 
     private fun showNotifications(message: String) {

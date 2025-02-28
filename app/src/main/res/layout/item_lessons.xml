@@ -44,41 +44,12 @@
 
     </LinearLayout>
 
-
-    <RelativeLayout
+    <CheckBox
+        android:id="@+id/arriveCheck"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:paddingHorizontal="15dp">
-
-        <Button
-            android:id="@+id/lessonMoreButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
-            android:text="Подробнее"
-            android:backgroundTint="@color/lightBlue"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/lightBlack"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
-            android:text="Действие"
-            android:backgroundTint="@color/lightBlue"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/lightBlack"/>
-
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        android:text="Я приду на секцию"
+        android:textSize="15dp"
+        android:checked="true"/>
 
 </LinearLayout>

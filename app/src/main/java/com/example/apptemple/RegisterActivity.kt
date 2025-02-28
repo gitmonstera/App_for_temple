@@ -17,8 +17,8 @@ import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var customNotification: CustomNotification
 
+    private lateinit var customNotification: CustomNotification
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
 
@@ -104,8 +104,6 @@ class RegisterActivity : AppCompatActivity() {
         login: String,
         password: String,
     ) {
-        val passCheck = sharedPreferences.getBoolean("passChecker", false)
-
         val userData = UserData(
             lastName = secondName,
             firstName = firstName,
@@ -120,9 +118,6 @@ class RegisterActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ServerResponse>, response: Response<ServerResponse>) {
                 if(response.isSuccessful) {
                     if(response.code() == 201) {
-                        cacheSave(secondName, firstName, email, login, password, passCheck)
-                        showNotification("Проверьте почту для завершения регистрации")
-                        Thread.sleep(3000)
                         startActivity(Intent(this@RegisterActivity, EnterActivity::class.java))
                     } else {
                         showNotification("Успешный ответ, но код: ${response.code()}")
@@ -136,26 +131,6 @@ class RegisterActivity : AppCompatActivity() {
                 showNotification("Ошибка сети: ${t.message}")
             }
         })
-    }
-
-    private fun cacheSave(
-        secondName: String,
-        firstName: String,
-        email: String,
-        login: String,
-        password: String,
-        passCheck: Boolean,
-    ) {
-        if(passCheck) {
-            editor.putString("last_name", secondName)
-            editor.putString("first_name", firstName)
-            editor.putString("email", email)
-            editor.putString("username", login)
-            editor.putString("password", password)
-            editor.apply()
-        } else {
-            showNotification("Логин и пароль не сохранены")
-        }
     }
 
     private fun showNotification(message: String) {
